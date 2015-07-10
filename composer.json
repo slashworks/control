@@ -1,6 +1,6 @@
 {
   "name": "control",
-  "license": "MIT",
+  "license": "LGPL-3.0+",
   "type": "project",
   "description": "contao monitoring tool",
   "autoload": {
