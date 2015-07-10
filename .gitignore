@@ -1,0 +1,108 @@
+# Cache and logs (Symfony2)
+app/cache/*
+app/cache/dev
+app/cache/prod
+app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+
+# Cache and logs (Symfony3)
+var/cache/*
+var/logs/*
+!var/cache/.gitkeep
+!var/logs/.gitkeep
+
+# Parameters
+#app/config/parameters.yml
+app/config/parameters2.yml
+app/config/tmp_parameters.yml
+app/config/parameters_orig.yml
+app/config/parameters.ini
+
+# Managed by Composer
+app/bootstrap.php.cache
+var/bootstrap.php.cache
+bin/*
+!bin/console
+!bin/symfony_requirements
+vendor/
+
+# Assets and user uploads
+web/bundles/*
+web/css/*
+web/js/*
+web/images/*
+web/files/*
+
+!web/css/.gitkeep
+!web/js/.gitkeep
+!web/images/.gitkeep
+!web/files/.gitkeep
+!web/files/customers/.gitkeep
+
+# PHPUnit
+app/phpunit.xml
+phpunit.xml
+
+# Build data
+build/
+build.xml
+
+# Composer PHAR
+/composer.phar
+
+sig.php
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+*~
+
+# KDE directory preferences
+.directory
+
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+.idea
+
+
+
+
+composer.phar
