@@ -1,0 +1,49 @@
+{% extends "@app_theme/Layout/base.html.twig" %}
+
+{% block content -%}
+
+    <section class="vbox">
+        <section class="scrollable padder">
+            <div class="m-b-md" style="position: relative">
+                <h1 class="page-header" style="">{{ "system.users.list"|trans}}</h1>
+                <div class="head-controls">
+                    {#<a href="{{ path('backend_system_user_new') }}" class="btn btn-primary btn-circle" data-toggle="tooltip" data-placement="left" data-original-title="{{ "system.users.new"|trans }}" ><i class="fa fa-plus"></i></a>#}
+                </div>
+            </div>
+            <section class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-striped m-b-none" data-ride="datatables">
+                        <thead>
+                        <tr>
+                            <th class="sorting" style="width:3%">{{ "user.id"|trans }}</th>
+                            <th class="sorting" style="width:3%">{{ "user.activated"|trans }}</th>
+                            <th class="sorting" style="width:10%">{{ "user.role"|trans }}</th>
+                            <th class="sorting">{{ "user.username"|trans }}</th>
+                            <th class="sorting" style="width:5%;">{{ "global.action"|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr class="{{ cycle(['odd','even'],loop.index0) }}">
+                                    <td>{{ entity.id }}</td>
+                                    <td>{% if entity.activated %}<i class="fa fa-check" style="color:#007700"></i>{% else %}<i class="fa fa-ban" style="color:#770000"></i>{% endif %}</td>
+                                    <td>
+                                        {% for role in entity.roles %}
+                                            {{ role|trans }}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ entity.username }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ path('backend_system_user_edit', { 'id': entity.id }) }}" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.edit"|trans }}"><i class="fa fa-wrench"></i></a>
+                                        {#<span class="button-divider">|</span>#}
+                                        {#<a href="{{ path('backend_system_user_delete', { 'id': entity.id }) }}" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.delete"|trans }}"><i class="fa fa-trash-o"></i></a>#}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </section>
+    {% endblock %}

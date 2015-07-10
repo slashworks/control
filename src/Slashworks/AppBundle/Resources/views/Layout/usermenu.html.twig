@@ -1,0 +1,21 @@
+{% extends "SlashworksBackendBundle::Layout/usermenu.html.twig" %}
+
+{% block system_mainmenu_items %}
+    <li>
+        <a href="{{ path("backend_system_customer") }}"><i class="fa fa-briefcase"></i> {{"mainmenu.system.customers"|trans}}</a>
+    </li>
+    {{ parent() }}
+    <li>
+        <a href="{{ path("license_edit") }}" onclick="SYSTEM.openModal(this.href);return false;"><i class="fa fa-cubes"></i> {{"mainmenu.license_edit"|trans}}</a>
+    </li>
+    <li>
+        <a href="#" id="report_bug"><i class="fa fa-bug"></i>{{ "mainmenu.report_bug"|trans }}</a>
+    </li>
+{% endblock %}
+
+{% block mainmenu_items %}
+    <li>
+        <a href="{{ path("remote_app") }}"><i class="fa fa-cubes"></i> {{"mainmenu.remote_app"|trans}}</a>
+    </li>
+    {{ parent() }}
+{% endblock %}

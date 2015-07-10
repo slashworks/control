@@ -1,0 +1,44 @@
+security:
+
+    encoders:
+        Slashworks\BackendBundle\Model\User:
+            algorithm: bcrypt
+
+    providers:
+            main:
+                propel:
+                    class: Slashworks\BackendBundle\Model\User
+                    property: username
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+
+    firewalls:
+
+        update_firewall:
+            pattern:   ^/api/update$
+            anonymous: ~
+        login_firewall:
+            pattern:   ^/backend/login$
+            anonymous: ~
+        secured_area:
+            pattern:   ^/backend
+            form_login:
+                login_path: /backend/login
+                check_path: /backend/login_check
+                default_target_path: /backend
+                csrf_provider: form.csrf_provider
+            logout:
+                path:   /backend/logout
+                target: /backend/login
+
+    access_control:
+        - { path: /backend/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /api/update, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /backend/api/init, roles: ROLE_USER }
+        - { path: /backend/api/init/*, roles: ROLE_USER }
+        - { path: /backend/admin, roles: ROLE_ADMIN }
+        - { path: /backend/system, roles: ROLE_ADMIN }
+        - { path: /backend/system/*, roles: ROLE_ADMIN }
+        - { path: /backend/.*, roles: ROLE_USER }
+        - { path: /backend, roles: ROLE_USER }

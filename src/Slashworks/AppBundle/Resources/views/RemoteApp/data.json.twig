@@ -1,0 +1,65 @@
+{% spaceless %}
+{
+    "data": [
+    {% for entity in entities %}
+        {
+            {% set data = entity.getRemoteHistoryContaos() %}
+
+            {% if data.count() > 0 %}
+            {% set data = data[0] %}
+            {% else  %}
+            {% set data = {"statuscode":"0"}  %}
+            {% endif %}
+            {% set childdata = entity.getRemoteHistoryContaoAsJson() %}
+            "DT_RowId": "row_{{ entity.id }}",
+            "Id": "{{ entity.id }}",
+            "Status":"<span id=\"status_{{ entity.id }}\">{% if data.statuscode == 200 %}<i class=\"fa fa-circle status_active\"></i>{% else %}<i class=\"fa fa-globe fa-circle-o status_inactive\"></i>{% endif %}</span>",
+            "Statuscode": {{ data.statuscode }},
+            "Name":"{{ entity.name }}",
+            "activated":{% if entity.activated %}true{% else %}false{% endif %},
+            "Type":"<i data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ entity.type|trans }}\" title=\"{{ entity.type|trans }}\" class=\"fa fa-2x type-{{ entity.type }}\"></i>",
+            "Customer":"<a href=\"#\" onclick=\"SYSTEM.openModal('{{ path("backend_system_customer_info",{'id':entity.customer.id}) }}');return false;\">{{ entity.customer.name }}</a>",
+            "action":"{% spaceless %}
+                {% if entity.activated %}<a href=\"#\" onclick=\"SYSTEM.openModal('{{ path("remote_app_details",{'id':entity.id}) }}');return false;\" class=\"action-button\"><i class=\"fa fa-search-plus\"></i></a>
+                    {% if entity.WebsiteHash == "" %}
+                            <a href=\"#\" onclick=\"return SYSTEM.apiCall('{{ path('remote_api_install',{"id": entity.id}) }}', false, true,'{{ entity.id }}','{{ path("remote_app_single_api_call", { "id": entity.id }) }}',this);\" class=\"action-button\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "remote_app.api_install"|trans }}\"><i class=\"fa fa-key\"></i></a>
+                    {% else %}
+                        <a href=\"#\" onclick=\"return SYSTEM.apiCall('{{ path('remote_api_init_update',{"id": entity.id}) }}');\" class=\"action-button\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "remote_app.api_update"|trans }}\"><i class=\"fa fa-upload\"></i></a>
+                        <a class=\"api_pull action-button\" href=\"#\" onclick=\"SYSTEM.runSingleApiCall('{{ entity.id }}','{{ path("remote_app_single_api_call", { "id": entity.id }) }}',this);return false;\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "remote_app.api_call"|trans }}\"><i id=\"api_call_{{ entity.id }}\" class=\"fa fa-refresh\"></i></a>
+                    {% endif %}
+                    <ul class=\"nav context\">
+                        <li class=\"dropdown\">
+                            <a class=\"dropdown-toggle action-button\" data-toggle=\"dropdown\" href=\"#\">
+                            <i class=\"fa fa-bars fa-fw\"></i>
+                            </a>
+                            <ul class=\"dropdown-menu dropdown-user\">
+                                <li>
+                                    <a href=\"{{ path("remote_app_edit", { "id": entity.id }) }}\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "global.edit"|trans }}\"><i class=\"fa fa-wrench\"> Einstellungen</i></a>
+                                </li>
+                                <li>
+                                    <a href=\"#\" onclick=\"SYSTEM.openModal('{{ path("remote_app_last_log",{'id':entity.id}) }}');return false;\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "remote_app.api_log"|trans }}\"><i class=\"fa fa-list-alt\"> Letzte Nachricht</i></a>
+                                </li>
+                                <li>
+                                    <a href=\"#\" onclick=\"return SYSTEM.initDownload('{{ path('remote_api_init',{"id": entity.id}) }}');\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "remote_app.api_init"|trans }}\"><i class=\"fa fa-download\"> Modul herunterladen</i></a>
+                                </li>
+                                <li class=\"divider\"></li>
+                                <li>
+                                    <a href=\"{{ path("remote_app_delete", { "id": entity.id }) }}\" onclick=\"return SYSTEM.confirm('{{ "system.confirm.delete"|trans }}');\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "global.delete"|trans }}\"><i class=\"fa fa-trash-o\"> Löschen</i></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                        <a href=\"{{ path("remote_app_edit", { "id": entity.id }) }}\" data-toggle=\"tooltip\" class=\"action-button\"  data-placement=\"left\" data-original-title=\"{{ "global.edit"|trans }}\"><i class=\"fa fa-wrench\"></i></a>
+                        <a href=\"{{ path("remote_app_delete", { "id": entity.id }) }}\" onclick=\"return SYSTEM.confirm('{{ "system.confirm.delete"|trans }}');\" class=\"action-button\" data-toggle=\"tooltip\" data-placement=\"left\" data-original-title=\"{{ "global.delete"|trans }}\"><i class=\"fa fa-trash-o\"></i></a>
+                {% endif %}
+                {% endspaceless %}",
+            "LastRun":"<span id=\"lastRun_{{ entity.id }}\">{{ entity.lastRun|date("d.m.Y H:i") }}</span>",
+            "History":{{ childdata|raw }}
+        }
+        {% if not loop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+{% endspaceless %}
+

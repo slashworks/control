@@ -1,0 +1,11 @@
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            {% set widget_attr =  attr|merge({'class':'form-control'})%}
+
+            {{ form_widget(form,{ 'attr': widget_attr}) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}

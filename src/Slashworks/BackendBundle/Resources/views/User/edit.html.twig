@@ -1,0 +1,58 @@
+{% extends "@app_theme/Layout/base.html.twig" %}
+{% block content %}
+
+
+
+    <section class="vbox">
+        <section class="scrollable padder">
+            <div class="m-b-md" style="position: relative">
+                <h1 class="page-header" style="">{{ "system.users.edit"|trans}}</h1>
+                <div class="head-controls">
+                    <a href="{{ path('backend_system_user') }}" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.back"|trans }}"><i class="fa fa-mail-reply"></i></a>
+                </div>
+            </div>
+            <section class="panel panel-default" style="clear:both;">
+
+                {{ form_start(edit_form) }}
+                {{ form_errors(edit_form) }}
+                {{ form_widget(edit_form._token) }}
+
+                <div class="panel-body">
+                    <div class="row">
+                        <form role="form">
+                            <div class="col-lg-6">
+
+                                {{ form_row(edit_form.firstname) }}
+                                {{ form_row(edit_form.lastname) }}
+                                {{ form_row(edit_form.email) }}
+                                {{ form_row(edit_form.phone) }}
+                                {{ form_row(edit_form.memo) }}
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                {{ form_row(edit_form.username) }}
+                                {{ form_row(edit_form.password) }}
+                                {{ form_row(edit_form.password_repeat) }}
+                                {{ form_row(edit_form.roles) }}
+                                {{ form_row(edit_form.activated) }}
+
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group text-right">
+                                    <button type="reset" class="btn btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.reset"|trans }}"><i class="fa fa-2x fa-ban"></i></button>
+                                    <button type="submit" class="btn btn-primary btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.save"|trans }}"><i class="fa fa-2x fa-save"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                </form>
+
+            </section>
+        </section>
+    </section>
+
+
+{% endblock %}

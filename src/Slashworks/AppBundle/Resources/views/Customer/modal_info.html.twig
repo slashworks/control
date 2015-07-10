@@ -1,0 +1,62 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    customer-{{ customer.id }}
+{% endblock %}
+
+
+{% block modal_label %}
+    {{ customer.name }}
+{% endblock %}
+
+
+
+{% block modal_title %}
+    Details zum Kunden:  {{ customer.name }} {{ customer.legalForm }}
+{% endblock %}
+
+
+{% block modal_content %}
+
+    <p><img src="/files/customers/{{ customer.logo }}" style="max-height: 128px;"></p>
+
+    <table class="table table-striped ">
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ customer.name }} {{ customer.legalForm }}</td>
+        </tr>
+        <tr>
+            <td><strong>Straße:</strong></td>
+            <td>{{ customer.street }}</td>
+        </tr>
+        <tr>
+            <td><strong>Postleitzahl:</strong></td>
+            <td>{{ customer.zip }}</td>
+        </tr>
+        <tr>
+            <td><strong>Stadt:</strong></td>
+            <td>{{ customer.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Telefon:</strong></td>
+            <td>{{ customer.phone }}</td>
+        </tr>
+        <tr>
+            <td><strong>Fax:</strong></td>
+            <td>{{ customer.fax }}</td>
+        </tr>
+        <tr>
+            <td><strong>E-Mail:</strong></td>
+            <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
+        </tr>
+        <tr>
+            <td><strong>Anmerkungen:</strong></td>
+            <td>{{ customer.notes }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
+
+{% block modal_footer %}
+    {{ parent() }}
+{% endblock %}

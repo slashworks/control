@@ -1,0 +1,7 @@
+slashworks_app:
+    resource: "@SlashworksAppBundle/Resources/config/routing.php"
+    prefix:   /
+
+slashworks_backend:
+    resource: "@SlashworksBackendBundle/Resources/config/routing.php"
+    prefix:   /

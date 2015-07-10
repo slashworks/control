@@ -1,0 +1,59 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    entity-ID
+{% endblock %}
+
+
+{% block modal_label %}
+    label
+{% endblock %}
+
+
+
+{% block modal_title %}
+    titel
+{% endblock %}
+{% block modal_size_class %}modal-md{% endblock %}
+
+
+{% block modal_content %}
+
+
+    {{ form_start(form,{"attr": {"id":"frmNotificationCenter"}}) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.notification_change, { 'label': 'notificationcenter.form.notification_change'|trans }) }}
+
+    {{ form_row(form.notification_error, { 'label': 'notificationcenter.form.notification_error'|trans }) }}
+
+    {{ form_widget(form._token) }}
+
+    <script>
+        var frmLicense = $("#frmNotificationCenter");
+        frmLicense.unbind("submit");
+        frmLicense.on("submit", function (e) {
+            e.preventDefault();
+            var $this = $(e.currentTarget);
+            $.post(
+                    $this.attr("action"),
+                    $this.serialize(),
+                    function (data) {
+                        if(data.success == true){
+                            SYSTEM.notify(data.message,"success");
+                        }else{
+                            SYSTEM.notify(data.message,"error");
+                        }
+                    },
+                    "json"
+            );
+            return false;
+        });
+    </script>
+{% endblock %}
+
+
+{% block modal_footer %}
+    <button class="btn btn-primary" onclick='$("#frmNotificationCenter").trigger("submit");return false;'>{{"notificationcenter.form.save"|trans}}</button>
+    {{ parent() }}
+{% endblock %}

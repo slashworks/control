@@ -1,0 +1,25 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    error-{{ code }}
+{% endblock %}
+
+
+{% block modal_label %}
+    {{ "api.error.heading"|trans }}
+{% endblock %}
+
+
+{% block modal_title %}
+    {{ "api.error.heading"|trans }}
+{% endblock %}
+
+
+{% block modal_content %}
+    {{ ("api.error." ~ code)|trans }}
+{% endblock %}
+
+
+{% block modal_footer %}
+    {{ parent() }}
+{% endblock %}

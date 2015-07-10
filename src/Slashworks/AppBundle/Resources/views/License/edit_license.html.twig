@@ -1,0 +1,75 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    entity-{{ entity.id }}
+{% endblock %}
+
+
+{% block modal_label %}
+    {{ entity.domain }}
+{% endblock %}
+
+
+{% block modal_title %}
+    {{ entity.domain }}
+{% endblock %}
+{% block modal_size_class%}modal-md{% endblock %}
+
+
+{% block modal_content %}
+
+    {{ form_start(edit_form,{"attr": {"id":"frmLicense"}}) }}
+        {{ form_errors(edit_form) }}
+
+            {{ form_row(edit_form.domain, { 'label': 'license.domain'|trans }) }}
+
+            {{ form_row(edit_form.max_clients, { 'label': 'license.max_clients'|trans }) }}
+
+            {{ form_row(edit_form.valid_until, { 'label': 'license.valid_until'|trans }) }}
+
+            {{ form_row(edit_form.serial, { 'label': 'license.serial'|trans }) }}
+
+
+        {{ form_widget(edit_form._token) }}
+    </form>
+    <script>
+        function timeConverter(UNIX_timestamp){
+            var a = new Date(UNIX_timestamp*1000);
+            var year = a.getFullYear();
+            var month = a.getMonth()+1;
+            var date = a.getDate();
+            if(month<10)month = "0"+month;
+            if(date<10)date = "0"+date;
+            var time = date + '.' + month + '.' + year ;
+            return time;
+        }
+        var frmLicense = $("#frmLicense");
+        frmLicense.unbind("submit");
+        frmLicense.on("submit", function (e) {
+            e.preventDefault();
+            var $this = $(e.currentTarget);
+            $.post(
+                    $this.attr("action"),
+                    $this.serialize(),
+                    function (data) {
+                        $("#slashworks_appbundle_license_max_clients").val(data.max_clients);
+                        $("#slashworks_appbundle_license_domain").val(data.domain);
+                        $("#slashworks_appbundle_license_valid_until").val(timeConverter(data.valid_until));
+
+                        if(data.success == true){
+                            SYSTEM.notify(data.message,"success");
+                        }else{
+                            SYSTEM.notify(data.message,"error");
+                        }
+                    },
+                    "json"
+            );
+            return false;
+        });
+    </script>
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="btn btn-primary" onclick='$("#frmLicense").trigger("submit");return false;'>{{"license.update.submit"|trans}}</button>
+    {{ parent() }}
+{% endblock %}

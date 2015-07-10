@@ -1,0 +1,20 @@
+
+
+
+
+#remote_app_table{
+    border:1px solid #ccc;
+    border-radius: 5px;
+    display:block;
+}
+
+
+.alert-swinfo {
+    background-color: #00bed7;
+    border-color: #007388;
+}
+
+
+#slashworks_appbundle_license_serial{
+    min-height:170px;
+}

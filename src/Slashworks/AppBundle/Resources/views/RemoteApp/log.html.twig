@@ -1,0 +1,29 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    log-{{ remote_app.id }}
+{% endblock %}
+
+
+{% block modal_label %}
+    {{ remote_app.name }}
+{% endblock %}
+
+
+
+{% block modal_title %}
+    {{ "remote_app.lastlog.title"|trans }}
+{% endblock %}
+
+
+{% block modal_content %}
+    <b>{{ "remote_app.log.date"|trans }}: </b> {{ oLog.dtCall.format("d.m.Y H:i:s") }}<br>
+    <b>{{ "remote_app.log.statuscode"|trans }}: </b> {{ oLog.statusCode }}<br>
+    <b>{{ "remote_app.log.content"|trans }}:</b><br>
+    <pre style="width: 100%;height:400px;overflow: scroll;padding:15px;">{{ oLog.lastResponseAsString }}</pre>
+{% endblock %}
+
+
+{% block modal_footer %}
+    {{ parent() }}
+{% endblock %}

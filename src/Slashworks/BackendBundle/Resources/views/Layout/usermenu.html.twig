@@ -1,0 +1,25 @@
+
+
+<ul class="nav navbar-top-links navbar-right">
+<li class="dropdown">
+    <a class="dropdown-toggle header" data-toggle="dropdown" href="#">
+        <i class="fa fa-bars fa-fw"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+        {% block mainmenu_items %}
+            {% if is_granted("ROLE_ADMIN") %}
+                        {% block system_mainmenu_items %}
+                            <li>
+                                <a href="{{ path("system_user") }}"><i class="fa fa-user"></i> {{"mainmenu.system.users"|trans}}</a>
+                            </li>
+                        {% endblock %}
+
+            {% endif %}
+        {% endblock %}
+        <li class="divider"></li>
+        <li>
+            <a href="{{ path("logout") }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        </li>
+    </ul>
+</li>
+</ul>

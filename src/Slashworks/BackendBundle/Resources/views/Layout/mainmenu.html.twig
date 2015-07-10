@@ -1,0 +1,19 @@
+<ul class="nav navbar-nav" id="side-menu">
+    <li>
+        <a href="{{path("dashboard")}}"><i class="fa fa-home fa-fw"></i> {{"mainmenu.system.dashboard"|trans}}</a>
+    </li>
+    {% block mainmenu_items %}
+        {% if is_granted("ROLE_ADMIN") %}
+        <li>
+            <a href="#"><i class="fa fa-wrench fa-fw"></i> {{"mainmenu.system"|trans}}</a>
+            <ul class="nav nav-second-level">
+                {% block system_mainmenu_items %}
+                    <li>
+                        <a href="{{ path("system_user") }}"><i class="fa fa-user"></i> {{"mainmenu.system.users"|trans}}</a>
+                    </li>
+                {% endblock %}
+            </ul>
+        </li>
+        {% endif %}
+    {% endblock %}
+</ul>

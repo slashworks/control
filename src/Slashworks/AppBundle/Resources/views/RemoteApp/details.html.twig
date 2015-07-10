@@ -1,0 +1,282 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}remote_app_details{% endblock %}
+
+
+{% block modal_label %}
+
+{% endblock %}
+
+
+{% block modal_title %}
+    {{ remoteapp.name }}
+{% endblock %}
+
+
+{% block modal_content %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab1" data-toggle="tab">Generelle Informationen</a>
+                </li>
+
+                <li>
+                    <a href="#tab2" data-toggle="tab">System Einstellungen</a>
+                </li>
+
+                <li>
+                    <a href="#erweiterungen" data-toggle="tab">Erweiterungen</a>
+                </li>
+
+                <li>
+                    <a href="#logs" data-toggle="tab">Letzte Log Einträge</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in group active" id="tab1">
+                    <h3>Generelle Informationen</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'remote_app.childrow.type'|trans }}</th>
+                                <th>Information</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>API Version</td>
+                                <td>{{ remoteappHistory.Apiversion }}</td>
+                            </tr>
+                            <tr>
+                                <td>Verbindungsstatus</td>
+                                <td>{% if remoteappHistory.Statuscode == 200 %}Aktiv{% else %}Inaktiv{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td>Zuletzt abgefragt</td>
+                                <td>{{ remoteapp.lastRun|date("d.m.Y H:i") }}</td>
+                            </tr>
+                            <tr>
+                                <td>System</td>
+                                <td>{{ remoteappHistory.Name }} {{ remoteappHistory.Version }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><b>PHP</b></td>
+                            </tr>
+                            <tr>
+                                <td>Version</td>
+                                <td>{{ remoteappHistory.PHP.version }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>PHP</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'remote_app.childrow.type'|trans }}</th>
+                                <th>Information</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Version</td>
+                                <td>{{ remoteappHistory.PHP.version }}</td>
+                            </tr>
+                            <tr>
+                                <td>allow_url_fopen</td>
+                                <td>{{ remoteappHistory.PHP.allow_url_fopen }}</td>
+                            </tr>
+                            <tr>
+                                <td>memory_limit</td>
+                                <td>{{ remoteappHistory.PHP.memory_limit }}</td>
+                            </tr>
+                            <tr>
+                                <td>max_execution_time</td>
+                                <td>{{ remoteappHistory.PHP.max_execution_time }}</td>
+                            </tr>
+                            <tr>
+                                <td>max_input_vars</td>
+                                <td>{{ remoteappHistory.PHP.max_input_vars }}</td>
+                            </tr>
+                            <tr>
+                                <td>upload_max_filesize</td>
+                                <td>{{ remoteappHistory.PHP.upload_max_filesize }}</td>
+                            </tr>
+                            <tr>
+                                <td>post_max_size</td>
+                                <td>{{ remoteappHistory.PHP.post_max_size }}</td>
+                            </tr>
+                            <tr>
+                                <td>display_errors</td>
+                                <td>{{ remoteappHistory.PHP.display_errors }}</td>
+                            </tr>
+                            <tr>
+                                <td>error_reporting</td>
+                                <td>{{ remoteappHistory.PHP.error_reporting }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>MySQL - Datenbank</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>{{ 'remote_app.childrow.type'|trans }}</th>
+                                <th>Information</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Server Version</td>
+                                <td>{{ remoteappHistory.MySQL.server_version }}</td>
+                            </tr>
+                            <tr>
+                                <td>Client Version</td>
+                                <td>{{ remoteappHistory.MySQL.client_version }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade group" id="tab2">
+                    <h2>System Einstellungen</h2>
+                    <h3>Generelle Einstellungen</h3>
+                    <dl>
+                        <dt>E-Mail Adresse des System Administrators</dt>
+                        <dd>{{ remoteappHistory.ConfigAdminemail }}</dd>
+                        <dt>Cachemodus</dt>
+                        <dd>
+                            {% if (remoteappHistory.ConfigCachemode == '' or remoteappHistory.ConfigCachemode == 'both') %}
+                                Den Server und Browsercache verwenden.
+
+                            {% elseif remoteappHistory.ConfigCachemode == 'server' %}
+                                Den Servercache verwenden.
+
+                            {% elseif remoteappHistory.ConfigCachemode == 'browser' %}
+                                Den Browsercache verwenden.
+
+                            {% elseif remoteappHistory.ConfigCachemode == 'none' %}
+                                Deaktiviert.
+
+                            {% endif %}
+                        </dd>
+                    </dl>
+                    <hr>
+                    <h3>Aktiv / Inaktiv Einstellungen</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Aktiv</th>
+                                <th>Name der Einstellung</th>
+                                <th>Hinweis</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigBypasscache == 'On' %}check-{% endif %}square-o fa-3"></i>
+                                </td>
+                                <td>Internen Cache umgehen</td>
+                                <td>Diese Option sollte bei Live Systemen immer inaktiv sein.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigMinifymarkup == 'On' %}check-{% endif %}square-o"></i>
+                                </td>
+                                <td>Markup komprimieren</td>
+                                <td>Diese Option sollte bei Live Systemen immer aktiv sein.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigDebugmode == 'On' %}check-{% endif %}square-o"></i>
+                                </td>
+                                <td>Debugmodus aktiv</td>
+                                <td>Diese Option sollte bei Live Systemen immer inaktiv sein.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigGzipscripts == 'On' %}check-{% endif %}square-o"></i>
+                                </td>
+                                <td>Gzip Komprimierung aktiv</td>
+                                <td>Diese Option sollte wenn möglich bei Live Systemen immer aktiv sein.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigRewriteurl == 'On' %}check-{% endif %}square-o"></i>
+                                </td>
+                                <td>Url Rewrite aktiv</td>
+                                <td>Diese Option sollte bei Live Systemen immer aktiv sein.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-{% if remoteappHistory.ConfigMinifymarkup == 'On' %}check-{% endif %}square-o"></i>
+                                </td>
+                                <td>Markup Komprimierung aktiv</td>
+                                <td>Diese Option sollte bei Live Systemen immer aktiv sein.</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade group" id="erweiterungen">
+                    <h2>Erweiterungen</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Aktiv</th>
+                                <th>Name der Erweiterung</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for name,status in remoteappHistory.Extensions %}
+                                <tr>
+                                    <td><i class="fa fa-{% if status == "On" %}check-{% endif %}square-o"></i></td>
+                                    <td>{{ name }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade group" id="logs">
+                    <h2>Die letzten Fehlermeldungen</h2>
+                    {% for log in remoteappHistory.Log %}
+                        <div>
+                            <dl class="logs">
+                                <dt>Datum:</dt>
+                                <dd>{{ log.tstamp|date("d.m.Y H:i") }}</dd>
+                                <dt>Ursprung:</dt>
+                                <dd>{{ log.source }}</dd>
+                                <dt>Benutzer:</dt>
+                                <dd>{{ log.username }}</dd>
+                                <dt>Funktion:</dt>
+                                <dd>{{ log.func }}</dd>
+                                <dt>Funktion:</dt>
+                                <dd>{{ log.browser }}</dd>
+                                <dt>Nachricht:</dt>
+                                <dd>{{ log.text|raw }}</dd>
+                            </dl>
+                        </div>
+                        {% if not loop.last %}
+                            <hr style="clear: both; margin-top: 20px;">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block modal_footer %}
+    {{ parent() }}
+{% endblock %}
+

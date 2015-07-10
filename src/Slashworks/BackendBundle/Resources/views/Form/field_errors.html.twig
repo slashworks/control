@@ -1,0 +1,21 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div class="alert alert-danger">
+                {% if form.parent is empty %}
+                    <ul class="val-error">
+                        {% for error in errors %}
+                            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators')~'. ' }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <span class="val-error">
+                     {% for error in errors %}
+                         {{ error.messageTemplate|trans(error.messageParameters,  'validators')~'. ' }}
+                     {% endfor %}
+                 </span>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

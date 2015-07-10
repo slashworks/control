@@ -1,0 +1,18 @@
+{% extends "SlashworksBackendBundle::Layout/base.html.twig" %}
+
+{% block css_theme_head %}
+    {% stylesheets
+    '@SlashworksAppBundle/Resources/public/css/*'
+    output='css/compiled/main_app.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block js_theme_footer %}
+    {{ parent() }}
+    {% javascripts '@SlashworksAppBundle/Resources/public/js/*' output='js/compiled/main_app.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

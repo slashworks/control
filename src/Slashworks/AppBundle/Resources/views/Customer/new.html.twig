@@ -1,0 +1,52 @@
+{% extends "SlashworksBackendBundle::Layout/base.html.twig" %}
+{% block content %}
+<section class="vbox">
+    <section class="scrollable padder">
+        <div class="m-b-md" style="position: relative">
+            <h1 class="page-header" style="">{{ "system.customers.create"|trans}}</h1>
+            <div class="head-controls">
+                <a href="{{ path('backend_system_customer') }}" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.back"|trans }}"><i class="fa fa-mail-reply"></i></a>
+            </div>
+        </div>
+        <section class="panel panel-default" style="clear:both;">
+
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+                {{ form_widget(form._token) }}
+                <div class="panel-body">
+                    <div class="row">
+                        <form role="form">
+                            <div class="col-lg-6">
+
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.street) }}
+                                {{ form_row(form.zip) }}
+                                {{ form_row(form.city) }}
+                                {{ form_row(form.country,{'attr':{'class':'form-control chosen-select'}}) }}
+                                {{ form_row(form.notes) }}
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                {{ form_row(form.legalform) }}
+                                {{ form_row(form.logo) }}
+                                {{ form_row(form.phone) }}
+                                {{ form_row(form.fax) }}
+                                {{ form_row(form.email) }}
+
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group text-right">
+                                    <button type="reset" class="btn btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.reset"|trans }}"><i class="fa fa-2x fa-ban"></i></button>
+                                    <button type="submit" class="btn btn-primary btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.save"|trans }}"><i class="fa fa-2x fa-save"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </section>
+</section>
+
+{% endblock %}

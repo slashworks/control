@@ -1,0 +1,133 @@
+{% extends "SlashworksAppBundle::Layout/base.html.twig" %}
+{% block content %}
+
+    <!--- somewhere within <body> -->
+    <section class="vbox">
+        <section class="scrollable padder">
+            <div class="m-b-md" style="position: relative">
+                <h1 class="page-header" style="">{{ "remote_app.create"|trans }}</h1>
+
+                <div class="head-controls">
+                    <a href="{{ path('remote_app') }}" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.back"|trans }}"><i class="fa fa-mail-reply"></i></a>
+                </div>
+            </div>
+            <section class="panel panel-default" style="clear:both;">
+                {{ form_start(edit_form) }}
+                    {{ form_errors(edit_form) }}
+                    {{ form_widget(edit_form._token) }}
+                    <div class="panel-body">
+                        <div class="row">
+                            <form role="form">
+                                <div class="col-lg-6">
+                                    {{ form_row(edit_form.name, { 'label': 'remote_app.name'|trans }) }}
+                                    {{ form_row(edit_form.type, { 'label': 'remote_app.type'|trans }) }}
+                                    {{ form_row(edit_form.customer, { 'label': 'remote_app.customer'|trans }) }}
+                                    {{ form_row(edit_form.domain, { 'label': 'remote_app.domain'|trans }) }}
+
+                                    {{ form_row(edit_form.notes, { 'label': 'remote_app.notes'|trans }) }}
+                                    {{ form_row(edit_form.includeLog, { 'label': 'remote_app.includeLog'|trans }) }}
+
+                                    {{ form_row(edit_form.notification_change, { 'label': 'remote_app.notification_change'|trans }) }}
+                                    {{ form_row(edit_form.notification_error, { 'label': 'remote_app.notification_error'|trans }) }}
+
+                                    {{ form_row(edit_form.activated, { 'label': 'remote_app.activated'|trans }) }}
+                                </div>
+                                <div class="col-lg-6">
+                                    {{ form_row(edit_form.apiUrl, { 'label': 'remote_app.apiUrl'|trans }) }}
+                                    {{ form_row(edit_form.cron, { 'label': 'remote_app.cron'|trans }) }}
+                                    <div id='cron-selector'></div>
+                                    {{ form_row(edit_form.notificationSender, { 'label': 'remote_app.notificationSender'|trans }) }}
+                                    {{ form_row(edit_form.notificationRecipient, { 'label': 'remote_app.notificationRecipient'|trans }) }}
+                                    {{ form_row(edit_form.apiAuthType, { 'label': 'remote_app.apiAuthType'|trans }) }}
+                                    <div id="api-auth-http-basic" style="display:none;">
+                                        {{ form_row(edit_form.apiAuthHttpUser, { 'label': 'remote_app.apiAuthHttpUser'|trans }) }}
+                                        {{ form_row(edit_form.apiAuthHttpPassword, { 'label': 'remote_app.apiAuthHttpPassword'|trans }) }}
+                                    </div>
+                                    <div id="api-auth-url-user-password" style="display:none;">
+                                        {{ form_row(edit_form.apiAuthUrlUserKey, { 'label': 'remote_app.apiAuthUrlUserKey'|trans }) }}
+                                        {{ form_row(edit_form.apiAuthUser, { 'label': 'remote_app.apiAuthUser'|trans }) }}
+                                        {{ form_row(edit_form.apiAuthUrlPwKey, { 'label': 'remote_app.apiAuthUrlPwKey'|trans }) }}
+                                        {{ form_row(edit_form.apiAuthPassword, { 'label': 'remote_app.apiAuthPassword'|trans }) }}
+                                    </div>
+                                    <div id="api-auth-url-token" style="display:none;">
+                                        {{ form_row(edit_form.apiAuthToken) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group text-right">
+                                        {#<button type="reset" class="btn btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.reset"|trans }}"><i class="fa fa-2x fa-ban"></i></button>#}
+                                        <button type="submit" class="btn btn-primary btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.save"|trans }}"><i class="fa fa-2x fa-save"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </section>
+{% endblock %}
+
+
+{% block js_footer %}
+    <script>
+
+        $(document).ready(function(){
+            var apiAuthType = $("#remoteapp_apiAuthType");
+            apiAuthType.on("change",function(){
+                toggleFormFields();
+            });
+
+            toggleFormFields();
+        });
+
+        var toggleFormFields = function(){
+            switch($("#remoteapp_apiAuthType").val()){
+                case 'none':
+                    $("#api-auth-http-basic input").val('');
+                    $("#api-auth-http-basic").hide();
+                    $("#api-auth-url-user-password input").val('');
+                    $("#api-auth-url-user-password").hide();
+                    $("#api-auth-url-token input").val('');
+                    $("#api-auth-url-token").hide();
+                    break;
+                case 'http-basic':
+
+                    $("#api-auth-http-basic").show();
+                    $("#api-auth-url-user-password input").val('');
+                    $("#api-auth-url-user-password").hide();
+                    $("#api-auth-url-token input").val('');
+                    $("#api-auth-url-token").hide();
+                    break;
+                case 'url-user-password':
+                    $("#api-auth-http-basic input").val('');
+                    $("#api-auth-http-basic").hide();
+                    $("#api-auth-url-user-password").show();
+                    $("#api-auth-url-token input").val('');
+                    $("#api-auth-url-token").hide();
+                    break;
+                case 'url-token':
+                    $("#api-auth-http-basic input").val('');
+                    $("#api-auth-http-basic").hide();
+                    $("#api-auth-url-user-password input").val('');
+                    $("#api-auth-url-user-password").hide();
+                    $("#api-auth-url-token").show();
+                    break;
+            }
+        };
+
+        $(document).ready(function() {
+            $('#cron-selector').cron({
+                initial: "{{ entity.cron }}",
+                onChange: function() {
+                    $('#remoteapp_cron').val($(this).cron("value"));
+                },
+                useGentleSelect: true,
+                customValues: {
+                    "Alle 10 Minuten" : "*/10 * * * *",
+                    "Alle 30 Minuten" : "*/30 * * * *"
+                }
+            });
+        });
+    </script>
+{% endblock %}
