@@ -266,7 +266,7 @@ INSERT INTO `role` (`id`, `name`, `role`) VALUES
 --
 
 INSERT INTO `system_settings` (`id`, `key`, `value`) VALUES
-(1, 'version', '0.2.4'),
+(1, 'version', '0.7.4'),
 (2, 'app_name', 'control'),
 (3, 'lvdc', '0'),
 (7, 'lico', 'https://lico.slash.works');
