@@ -835,3 +835,12 @@ tr.inactive img{
     width:16px;
     display:inline-block;
 }
+
+#slashworks_appbundle_license_domain,
+#slashworks_appbundle_license_max_clients,
+#slashworks_appbundle_license_valid_until{
+    background-color: #fff;
+    border:none;
+    box-shadow: none;
+    padding-left: 0;
+}

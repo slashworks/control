@@ -21,7 +21,7 @@
     {{ form_start(edit_form,{"attr": {"id":"frmLicense"}}) }}
         {{ form_errors(edit_form) }}
 
-            {{ form_row(edit_form.domain, { 'label': 'license.domain'|trans }) }}
+            {{ form_row(edit_form.domain, { 'label': 'license.domain'|trans,'attr':{'class':'test'} }) }}
 
             {{ form_row(edit_form.max_clients, { 'label': 'license.max_clients'|trans }) }}
 
