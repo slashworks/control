@@ -6,16 +6,19 @@
     </li>
     {{ parent() }}
     <li>
-        <a href="{{ path("license_edit") }}" onclick="SYSTEM.openModal(this.href);return false;"><i class="fa fa-cubes"></i> {{"mainmenu.license_edit"|trans}}</a>
+        <a href="{{ path("license_edit") }}" onclick="SYSTEM.openModal(this.href);return false;"><i class="fa fa-credit-card"></i> {{"mainmenu.license_edit"|trans}}</a>
     </li>
     <li>
         <a href="#" id="report_bug"><i class="fa fa-bug"></i>{{ "mainmenu.report_bug"|trans }}</a>
+    </li>
+    <li>
+        <a href="{{ path("about") }}" onclick="SYSTEM.openModal(this.href);return false;"><i class="fa fa-info-circle"></i> {{"mainmenu.about"|trans}}</a>
     </li>
 {% endblock %}
 
 {% block mainmenu_items %}
     <li>
-        <a href="{{ path("remote_app") }}"><i class="fa fa-cubes"></i> {{"mainmenu.remote_app"|trans}}</a>
+        <a href="{{ path("remote_app") }}"><i class="fa fa-cube"></i> {{"mainmenu.remote_app"|trans}}</a>
     </li>
     {{ parent() }}
 {% endblock %}

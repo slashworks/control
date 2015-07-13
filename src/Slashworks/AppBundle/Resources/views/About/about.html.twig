@@ -1,0 +1,176 @@
+{% extends "SlashworksBackendBundle::Layout/modal_base.html.twig" %}
+
+{% block modal_id %}
+    entity-about
+{% endblock %}
+
+
+{% block modal_label %}
+    {{ "about.title"|trans }}
+{% endblock %}
+
+
+{% block modal_title %}
+    {{ "about.title"|trans }}
+{% endblock %}
+
+{% block modal_size_class %}{% spaceless %}
+    modal-lg
+{% endspaceless %}{% endblock %}
+
+
+{% block modal_content %}
+
+    <style>
+        .check{
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            width: 34px;
+        }
+
+        .check.alert-info{
+            width: auto;
+        }
+
+        .row.odd{
+            background-color: #f4f4f4;
+        }
+        .row.even{
+            background-color: #ffffff;
+        }
+
+        .requirements .panel-body .row > div {
+            padding: 15px 60px 15px 15px;
+            position: relative;
+        }
+
+        .check {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%)
+        }
+
+        .check.alert-danger{
+            top: 15px;
+            transform: none;
+        }
+
+
+        .check.alert-info{
+            position: relative;
+            right: auto;
+            top: auto;
+            transform: none;
+            margin-top: 5px;
+            background-color: transparent;
+            padding: 0;
+            border:0;
+        }
+
+        .check.alert-info a{
+            color:#31708f;
+            font-weight: bold;
+        }
+
+
+    </style>
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ "license_info"|trans }}
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">{{ "license.domain"|trans }}:</div>
+                    <div class="col-md-8">{{ license.domain }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">{{ "license.valid_until"|trans }}:</div>
+                    <div class="col-md-8">{{ license.validUntil|date("d.m.Y") }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">{{ "license.max_clients"|trans }}:</div>
+                    <div class="col-md-8">{{ license.maxClients }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{ "current_version"|trans }}
+            </div>
+            <div class="panel-body">
+                <b>{{ version }}</b>
+            </div>
+        </div>
+    </div>
+</div>
+    <hr>
+    {% if failedrequirements|length > 0  or failedrecommendations|length > 0 %}
+
+        <div class="panel-group requirements" id="accordion">
+            {% if failedrequirements|length > 0 %}
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="">{{ "install.requirements"|trans }}</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" aria-expanded="true">
+
+                        <div class="panel-body" style="padding-top: 0;">
+                            {% for req in failedrequirements %}
+                                <div class="row  {{ cycle(['even','odd'], loop.index0) }}">
+                                    <div class="col-md-12" style="{% if req.fulfilled == false %}color:#a94442;{% endif %}">
+                                        {{ req.testMessage|trans|raw }}
+                                        {% if req.fulfilled == false %}
+                                            <div class="check alert-info">{{ req.helpHtml|trans|raw }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if failedrecommendations|length > 0 %}
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="" aria-expanded="true">{{ "install.recommendations"|trans }}</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="panel-body" style="padding-top: 0;">
+                            {% for req in failedrecommendations %}
+                                <div class="row  {{ cycle(['even','odd'], loop.index0) }}">
+                                    <div class="col-md-12" style="{% if req.fulfilled == false %}color:#a94442;{% endif %}">
+                                        {{ req.testMessage|trans|raw }}
+                                        {% if req.fulfilled == false %}
+                                            <div class="check alert-info">{{ req.helpHtml|trans|raw }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="panel-footer">
+                            <span style="color:#31708f" id="phpini">* {{ "install.loaded_ini_path"|trans }}: {{ iniPath }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block modal_footer %}
+    {{ parent() }}
+{% endblock %}
