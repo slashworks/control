@@ -42,6 +42,10 @@
         '_controller' => 'SlashworksAppBundle:License:edit',
     )));
 
+    $collection->add('about', new Route('/backend/about', array(
+        '_controller' => 'SlashworksAppBundle:About:about',
+    )));
+
     $collection->add('license_update', new Route('/backend/license/update', array(
         '_controller' => 'SlashworksAppBundle:License:update'
     ), array('_method' => 'post|put')

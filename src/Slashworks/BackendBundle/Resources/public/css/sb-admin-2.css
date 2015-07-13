@@ -830,3 +830,8 @@ tr.inactive img{
     right:50px !important;
     z-index:222 !important;
 }
+
+.dropdown-menu > li > a > i{
+    width:16px;
+    display:inline-block;
+}

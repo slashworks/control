@@ -103,6 +103,7 @@
         'remote_app.cron.domOpts'                     => 'Datm im Monat',
         'remote_app.cron.monthOpts'                   => 'Monat',
         'mainmenu.license_edit'                       => 'Lizenz',
+        'mainmenu.about'                       => 'Über Control',
         'license.update.successful'                   => '<b>Lizenz erfolgreich aktualisiert</b>',
         'license.update.failed'                       => '<b>Lizenzaktualisierung fehlgeschlagen.</b><br>Entweder ist die eingegebene Lizenz ungültig,<br>oder es besteht ein Problem mit dem Lizenzserver.<br><br>Bitte versuchen Sie es später erneut.',
         'license.update.failed_lico'                  => '<b>Lizenzaktualisierung fehlgeschlagen.</b><br>Verbindung zum Lizenzserver fehlgeschlagen.<br><br>Bitte versuchen Sie es später erneut.',
@@ -160,5 +161,8 @@
         'system.email.error.503.subject'              => 'Es gibt ein Problem mit einer Ihrer Installationen',
         'system.email.error.504.subject'              => 'Es gibt ein Problem mit einer Ihrer Installationen',
         'system.email.error.0.subject'                => 'Es gibt ein Problem mit einer Ihrer Installationen',
-        'system.confirm.delete' => 'Sind Sie sicher das Sie diesen Eintrag löschen möchten?'
+        'system.confirm.delete' => 'Sind Sie sicher das Sie diesen Eintrag löschen möchten?',
+        'license_info' => "Lizenzinformationen",
+        'current_version' => "Aktuelle Version",
+        'about.title' => 'Über Control'
     );
