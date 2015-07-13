@@ -844,3 +844,7 @@ tr.inactive img{
     box-shadow: none;
     padding-left: 0;
 }
+
+.dropdown-menu{
+    min-width: 200px;
+}
