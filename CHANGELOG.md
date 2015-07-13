@@ -1,5 +1,11 @@
 # Changelog 
 
+
+## [0.4.2](https://github.com/slashworks/control/releases/tag/0.4.2) (2015-07-13)
+
+- kleinere Fehlerkorrekturen
+
+
 ## [0.4.1](https://github.com/slashworks/control/releases/tag/0.4.1) (2015-07-13)
 
 - diverse Entwicklungs-Ordner wurden entfernt
