@@ -103,6 +103,20 @@
 
 
         /**
+         * @param $dir
+         *
+         * @return bool
+         */
+        private static function deleteTree($dir) {
+            $files = array_diff(scandir($dir), array('.','..'));
+            foreach ($files as $file) {
+                (is_dir("$dir/$file")) ? self::deleteTree("$dir/$file") : unlink("$dir/$file");
+            }
+            return rmdir($dir);
+        }
+
+
+        /**
          * @throws \Exception
          */
         private static function clearCache()
@@ -117,6 +131,15 @@
             $process = new Process('cd ' . self::$_container->get('kernel')->getRootDir() . ' && php console assetic:dump');
             $process->run();
 
+
+            $sProdCache = self::$_container->get('kernel')->getRootDir() . "/cache/prod";
+            $sDevCache = self::$_container->get('kernel')->getRootDir() . "/cache/dev";
+            if(is_dir($sProdCache)) {
+                self::deleteTree($sProdCache);
+            }
+            if(is_dir($sDevCache)) {
+                self::deleteTree($sDevCache);
+            }
 
             // executes after the command finishes
             if (!$process->isSuccessful()) {
