@@ -81,6 +81,7 @@
         private static function resetAsseticConfig()
         {
 
+            return;
 
             /**
              * dev

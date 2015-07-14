@@ -141,26 +141,28 @@
 
                 $oResponse = json_decode($response);
 
-                $aResult['max_clients'] = $oResponse->max_clients;
-                $aResult['valid_until'] = $oResponse->valid_until;
-                $aResult['domain']      = $sDomain;
-
                 if ($editForm->isValid() && $oResponse->valid == true) {
+                    $aResult['max_clients'] = $oResponse->max_clients;
+                    $aResult['valid_until'] = $oResponse->valid_until;
+                    $aResult['domain']      = $sDomain;
 
                     $aResult['success'] = true;
                     $aResult['message'] = $this->get("translator")->trans("license.update.successful");
+
+                    // license valid, save new license-data
+                    $oLicense->setValidUntil($aResult['valid_until']);
+                    $oLicense->setMaxClients($aResult['max_clients']);
+                    $oLicense->setDomain($sDomain);
+                    $oLicense->save();
                 } else {
                     $aResult['success'] = false;
                     $aResult['message'] = $this->get("translator")->trans("license.update.failed");
+                    $aResult['valid_until'] = strtotime("1970-01-01");
+                    $aResult['max_clients'] = 0;
+                    $aResult['domain'] = "-";
                 }
 
 
-                // license valid, save new license-data
-                $oLicense->setValidUntil($aResult['valid_until']);
-                $oLicense->setMaxClients($aResult['max_clients']);
-                $oLicense->setDomain($sDomain);
-
-                $oLicense->save();
             } else {
 
                 $aResult['max_clients'] = $oLicense->getMaxClients();
