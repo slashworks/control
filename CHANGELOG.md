@@ -1,5 +1,9 @@
 # Changelog 
 
+## [0.4.5](https://github.com/slashworks/control/releases/tag/0.4.5) (2015-07-14)
+
+- Bugfix Install Wizard
+
 
 ## [0.4.4](https://github.com/slashworks/control/releases/tag/0.4.4) (2015-07-14)
 
