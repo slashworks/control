@@ -202,15 +202,15 @@
         /**
          * initiate installation of complete monitoring module
          *
-         * @param $iRemoteApp
+         * @param $id
          *
          * @return \Symfony\Component\HttpFoundation\Response
          * @throws \Exception
          */
-        public function initInstallCallAction($iRemoteApp)
+        public function initInstallCallAction($id)
         {
 
-            $oRemoteApp = RemoteAppQuery::create()->findOneById($iRemoteApp);
+            $oRemoteApp = RemoteAppQuery::create()->findOneById($id);
             $sResult    = array(
                 "success" => false,
                 "message" => ""
