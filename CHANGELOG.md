@@ -1,5 +1,9 @@
 # Changelog 
 
+## [0.4.7](https://github.com/slashworks/control/releases/tag/0.4.6) (2015-07-14)
+
+- Bugfix für Modulinstallation
+
 ## [0.4.6](https://github.com/slashworks/control/releases/tag/0.4.6) (2015-07-14)
 
 - Bugfix Install Wizard

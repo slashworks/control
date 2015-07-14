@@ -52,19 +52,22 @@
             if (self::_checkDatabaseCredentials()) {
 
                 // write symfony's parameters.yml
-                self::_saveSystemConfig();
+                 self::_saveSystemConfig();
 
-                // insert default database dump
+                 // insert default database dump
                 self::_insertDump();
 
                 // create admin user
-                self::_createAdminUser();
+                 self::_createAdminUser();
 
                 // insert control-url to settgins-db
-                self::_saveControlUrl();
+                 self::_saveControlUrl();
 
                 // reset the assetic configs
-                self::resetAsseticConfig();
+                 self::resetAsseticConfig();
+
+                //create keys
+                self::createKeys();
 
                 // clears caches and dumps assets
                 self::clearCache();
@@ -74,6 +77,19 @@
             }
         }
 
+
+        private static function createKeys(){
+            $rsa = new \Crypt_RSA();
+            $aKeys = $rsa->createKey(512);
+            if(empty($aKeys)){
+                throw new \Exception("Key generation failed...");
+            }
+
+            $sKeyPath = __DIR__."/../../AppBundle/Resources/private/api/keys/server/";
+            file_put_contents($sKeyPath."private.key",$aKeys['privatekey']);
+            file_put_contents($sKeyPath."public.key",$aKeys['publickey']);
+
+        }
 
         /**
          * reset assitx-config not to use controller

@@ -161,6 +161,7 @@
         'system.email.error.503.subject'              => 'Es gibt ein Problem mit einer Ihrer Installationen',
         'system.email.error.504.subject'              => 'Es gibt ein Problem mit einer Ihrer Installationen',
         'system.email.error.0.subject'                => 'Es gibt ein Problem mit einer Ihrer Installationen',
+        'remote_app.api.init.error' => 'Initialisierung fehlgeschlagen. Bitte wenden Sie sich an den Support',
         'system.confirm.delete' => 'Sind Sie sicher das Sie diesen Eintrag löschen möchten?',
         'license_info' => "Lizenzinformationen",
         'current_version' => "Aktuelle Version",

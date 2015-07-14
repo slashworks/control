@@ -55,6 +55,7 @@
         public function indexAction()
         {
 
+
             $aRemoteApps = RemoteAppQuery::create()->find();
 
             return $this->render('SlashworksAppBundle:RemoteApp:index.html.twig', array(
@@ -220,7 +221,7 @@
                 $mResult = Api::call("doInstall", array(), $oRemoteApp->getUpdateUrl(), $oRemoteApp->getPublicKey(), $oRemoteApp);
                 if (!empty($mResult)) {
                     if (!isset($mResult['result']['result'])) {
-                        throw new \Exception("error in " . __FILE__ . " on line " . __LINE__);
+                        throw new \Exception($this->get("translator")->trans("remote_app.api.init.error"));
                     }
 
                     if ($mResult['result']['result'] == true) {
@@ -390,6 +391,18 @@
 
             if ($form->isValid()) {
 
+                $sDomain = $oRemoteApp->getDomain();
+                if(substr($sDomain,-1,1) !== "/"){
+                    $sDomain .= "/";
+                    $oRemoteApp->setDomain($sDomain);
+                }
+
+                $sModulePath = $oRemoteApp->getApiUrl();
+                if(substr($sModulePath,0,1) === "/"){
+                    $sModulePath = substr($sModulePath,1);
+                    $oRemoteApp->setApiUrl($sModulePath);
+                }
+
                 $oRemoteApp->save();
 
                 return $this->redirect($this->generateUrl('remote_app'));
@@ -481,6 +494,17 @@
 
 
             if ($editForm->isValid()) {
+
+                $sDomain = $oRemoteApp->getDomain();
+                if(substr($sDomain,-1,1) !== "/"){
+                    $sDomain .= "/";
+                    $oRemoteApp->setDomain($sDomain);
+                }
+                $sModulePath = $oRemoteApp->getApiUrl();
+                if(substr($sModulePath,0,1) === "/"){
+                    $sModulePath = substr($sModulePath,1);
+                    $oRemoteApp->setApiUrl($sModulePath);
+                }
 
                 $oRemoteApp->save();
 
