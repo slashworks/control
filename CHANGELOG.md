@@ -1,7 +1,13 @@
 # Changelog 
 
 
-## [0.4.3](https://github.com/slashworks/control/releases/tag/0.4.3) (2015-07-13)
+## [0.4.4](https://github.com/slashworks/control/releases/tag/0.4.4) (2015-07-14)
+
+- kleinere Fehlerkorrekturen
+- Lizenz-Seite zum Install-Wizard hinzugefügt
+
+
+## [0.4.3](https://github.com/slashworks/control/releases/tag/0.4.3) (2015-07-14)
 
 - kleinere Fehlerkorrekturen
 - htaccess-Anpassungen falls der vhost nicht angepasst werden kann
