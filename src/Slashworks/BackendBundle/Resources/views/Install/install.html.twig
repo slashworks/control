@@ -18,8 +18,9 @@
     '@SlashworksBackendBundle/Resources/public/css/*'
     '@SlashworksBackendBundle/Resources/public/css/plugins/*'
     '@SlashworksBackendBundle/Resources/public/css/animate.css'
-    output='css/compiled/main.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
+    output='css/compiled/main.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 
     {% block css_head %}{% endblock %}
@@ -28,6 +29,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     {% block js_head %}{% endblock %}
+    <style>
+
+        .login-panel {
+            margin-top: 5%;
+        }
+
+    </style>
 </head>
 <body class="control">
 <div id="wrapper">
@@ -99,5 +107,23 @@
         </div>
     </div>
 </div>
+{% javascripts
+'@SlashworksBackendBundle/Resources/public/js/jquery.js'
+'@SlashworksBackendBundle/Resources/public/js/jquery-ui.min.js'
+'@SlashworksBackendBundle/Resources/public/js/plugins/dataTables/jquery.dataTables.js'
+'@SlashworksBackendBundle/Resources/public/js/plugins/dataTables/dataTables.bootstrap.js'
+'@SlashworksBackendBundle/Resources/public/js/plugins/dataTables/dataTables.responsive.js'
+'@SlashworksBackendBundle/Resources/public/js/bootstrap.min.js'
+'@SlashworksBackendBundle/Resources/public/js/bootstrap.growl.min.js'
+'@SlashworksBackendBundle/Resources/public/js/plugins/metisMenu/metisMenu.min.js'
+'@SlashworksBackendBundle/Resources/public/js/sb-admin-2.js'
+'@SlashworksBackendBundle/Resources/public/js/jquery-gentleSelect-min.js'
+'@SlashworksBackendBundle/Resources/public/js/jquery-cron-min.js'
+'@SlashworksBackendBundle/Resources/public/js/plugins/chosen.jquery.min.js'
+output='js/compiled/main.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
 </body>
 </html>

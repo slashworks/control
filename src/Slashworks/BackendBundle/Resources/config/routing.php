@@ -79,6 +79,15 @@
         '_controller' => 'SlashworksBackendBundle:User:update',
     ), array(), array(), '', array(), array('POST')));
 
+    $collection->add('install_license', new Route('/install/license', array(
+        '_controller' => 'SlashworksBackendBundle:Install:license',
+    ), array(), array(), '', array(), array('GET')));
+
+
+    $collection->add('install_license_agree', new Route('/install/license/agree', array(
+        '_controller' => 'SlashworksBackendBundle:Install:licenseAgree',
+    ), array(), array(), '', array(), array('GET')));
+
     $collection->add('install_requirements', new Route('/install/requirements', array(
         '_controller' => 'SlashworksBackendBundle:Install:requirements',
     ), array(), array(), '', array(), array('GET')));

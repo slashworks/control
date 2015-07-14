@@ -136,6 +136,7 @@ return array (
   "install.all_requirements_met" => "<b>Alle Systemvoraussetzungen sind erfüllt. Sie können mit der Installation beginnen.</b>",
    "install.not_all_requirements_met" => "<b>Nicht alle Systemvoraussetzungen sind erfüllt!</b><br>Wenn Sie fortfahren, kann dies zu einem instabilen bzw. nicht funktionalen System führen.",
     "system.next" => "Weiter",
+    "system.agree_license" => "Hiermit akzeptiere ich die Lizenzbedingungen und möchte mit der Installation beginnen",
     "system.back" => "Zurück",
   "install.loaded_ini_path" => "Derzeit geladene php.ini"
 );

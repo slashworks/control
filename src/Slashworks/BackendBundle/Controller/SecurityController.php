@@ -42,7 +42,7 @@
         {
 
             if ($this->container->getParameter('database_password') === null) {
-                return $this->redirect($this->generateUrl('install_requirements'));
+                return $this->redirect($this->generateUrl('install_license'));
             } else {
                 $request = $this->getRequest();
                 $session = $request->getSession();

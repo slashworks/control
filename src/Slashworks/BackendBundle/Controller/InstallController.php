@@ -22,6 +22,7 @@
 
     use Slashworks\BackendBundle\Form\Type\InstallType;
     use Slashworks\BackendBundle\Helper\InstallHelper;
+    use Slashworks\BackendBundle\Model\SystemSettings;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Request;
 
@@ -60,6 +61,31 @@
             return $this->render('SlashworksBackendBundle:Install:requirements.html.twig', array("iniPath" => $iniPath, "requirements" => $aRequirements, "recommendations" => $aRecommendations, "failedrequirements" => $aFailedRequirements, "failedrecommendations" => $aFailedRecommendations));
         }
 
+        /**
+         * Check System Requirements
+         *
+         * @return \Symfony\Component\HttpFoundation\Response
+         */
+        public function licenseAction()
+        {
+
+            // render template
+            return $this->render('SlashworksBackendBundle:Install:license.html.twig', array());
+        }
+
+
+        /**
+         * Check System Requirements
+         *
+         * @return \Symfony\Component\HttpFoundation\Response
+         */
+        public function licenseAgreeAction()
+        {
+
+
+            // render template
+            return $this->render('SlashworksBackendBundle:Install:license.html.twig', array());
+        }
 
         /**
          * Display install form
