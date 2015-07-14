@@ -269,7 +269,7 @@ INSERT INTO `system_settings` (`id`, `key`, `value`) VALUES
 (1, 'version', '0.7.4'),
 (2, 'app_name', 'control'),
 (3, 'lvdc', '0'),
-(3, 'license_agreement', '1'),
+(4, 'license_agreement', '1'),
 (7, 'lico', 'https://lico.slash.works');
 
 

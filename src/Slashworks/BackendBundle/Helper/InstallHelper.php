@@ -122,16 +122,6 @@
         private static function clearCache()
         {
 
-            $command = new AssetsInstallCommand();
-            $command->setContainer(self::$_container);
-            $input  = new ArgvInput(array('assets:install', self::$_container->get('kernel')->getRootDir() . "/../web"));
-            $output = new NullOutput();
-            $command->run($input, $output);
-
-            $process = new Process('cd ' . self::$_container->get('kernel')->getRootDir() . ' && php console assetic:dump');
-            $process->run();
-
-
             $sProdCache = self::$_container->get('kernel')->getRootDir() . "/cache/prod";
             $sDevCache = self::$_container->get('kernel')->getRootDir() . "/cache/dev";
             if(is_dir($sProdCache)) {
@@ -141,11 +131,20 @@
                 self::deleteTree($sDevCache);
             }
 
+
+            $command = new AssetsInstallCommand();
+            $command->setContainer(self::$_container);
+            $input  = new ArgvInput(array('assets:install', self::$_container->get('kernel')->getRootDir() . "/../web"));
+            $output = new NullOutput();
+            $command->run($input, $output);
+
+            $process = new Process('cd ' . self::$_container->get('kernel')->getRootDir() . ' && php console assetic:dump');
+            $process->run();
+
             // executes after the command finishes
             if (!$process->isSuccessful()) {
                 throw new \RuntimeException($process->getErrorOutput());
             }
-
         }
 
 
