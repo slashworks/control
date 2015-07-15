@@ -55,6 +55,11 @@
 
             });
 
+            $('#remote_app_table').tooltip({
+                selector: "[data-toggle=tooltip]",
+                container: "body"
+            });
+
         }).DataTable({
             "ajax": "{{ path('remote_app_ajax') }}",
             "language": {"url":"/backend/dt/languagefile/de"},
