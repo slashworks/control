@@ -14,7 +14,7 @@
         {
 
             if(!ini_get('date.timezone') || !date_default_timezone_get()){
-                $timezone = 'Europe/Berlin';
+                $timezone = "Europe/Berlin";
                 if (is_link('/etc/localtime')) {
                     // Mac OS X (and older Linuxes)
                     // /etc/localtime is a symlink to the
@@ -36,6 +36,7 @@
                         $timezone = $data['ZONE'];
                     }
                 }
+                $timezone = preg_replace("/[\\n\\r]+/", "", $timezone);
                 date_default_timezone_set($timezone);
             }
 
