@@ -18,26 +18,24 @@
                         <form role="form">
                             <div class="col-lg-6">
 
-                                {{ form_row(form.name) }}
-                                {{ form_row(form.street) }}
-                                {{ form_row(form.zip) }}
-                                {{ form_row(form.city) }}
-                                {{ form_row(form.country,{'attr':{'class':'form-control chosen-select'}}) }}
-                                {{ form_row(form.notes) }}
+                                {{ form_row(form.name, { 'label': 'customer.name'|trans }) }}
+                                {{ form_row(form.street, { 'label': 'customer.street'|trans }) }}
+                                {{ form_row(form.zip, { 'label': 'customer.zip'|trans }) }}
+                                {{ form_row(form.city, { 'label': 'customer.city'|trans }) }}
+                                {{ form_row(form.country,{'attr':{'class':'form-control chosen-select'}, 'label': 'customer.country'|trans }) }}
+                                {{ form_row(form.notes, { 'label': 'customer.notes'|trans }) }}
 
                             </div>
                             <div class="col-lg-6">
 
-                                {{ form_row(form.legalform) }}
-                                {{ form_row(form.logo) }}
-                                {{ form_row(form.phone) }}
-                                {{ form_row(form.fax) }}
-                                {{ form_row(form.email) }}
+                                {{ form_row(form.legalform, { 'label': 'customer.legalForm'|trans }) }}
+                                {{ form_row(form.phone, { 'label': 'customer.phone'|trans }) }}
+                                {{ form_row(form.fax, { 'label': 'customer.fax'|trans }) }}
+                                {{ form_row(form.email, { 'label': 'customer.email'|trans }) }}
 
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group text-right">
-                                    <button type="reset" class="btn btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.reset"|trans }}"><i class="fa fa-2x fa-ban"></i></button>
                                     <button type="submit" class="btn btn-primary btn-default" data-toggle="tooltip" data-placement="left" data-original-title="{{ "global.save"|trans }}"><i class="fa fa-2x fa-save"></i></button>
                                 </div>
                             </div>

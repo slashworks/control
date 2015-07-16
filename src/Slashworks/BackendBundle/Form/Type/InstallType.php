@@ -143,7 +143,7 @@
                               )
                 )
                 ->add('mailerTransport', 'choice', array(
-                                           'choices'     => array('smtp', 'mail', 'sendmail'),
+                                           'choices'     => array('smtp'=>'smtp', 'mail'=> 'mail', 'sendmail'=>'sendmail'),
                                            'required'    => true,
                                            'data'        => 'smtp',
                                            'constraints' => array(
@@ -165,6 +165,10 @@
 
             return 'slashworks_backendbundle_install';
         }
+
+
+
+
     }
 
 

@@ -18,39 +18,41 @@
 
 {% block modal_content %}
 
-    <p><img src="/files/customers/{{ customer.logo }}" style="max-height: 128px;"></p>
-
     <table class="table table-striped ">
         <tr>
-            <td><strong>Name:</strong></td>
+            <td><strong>{{ "customer.name"|trans }}:</strong></td>
             <td>{{ customer.name }} {{ customer.legalForm }}</td>
         </tr>
         <tr>
-            <td><strong>Straße:</strong></td>
+            <td><strong>{{ "customer.street"|trans }}:</strong></td>
             <td>{{ customer.street }}</td>
         </tr>
         <tr>
-            <td><strong>Postleitzahl:</strong></td>
+            <td><strong>{{ "customer.zip"|trans }}:</strong></td>
             <td>{{ customer.zip }}</td>
         </tr>
         <tr>
-            <td><strong>Stadt:</strong></td>
+            <td><strong>{{ "customer.city"|trans }}:</strong></td>
             <td>{{ customer.city }}</td>
         </tr>
         <tr>
-            <td><strong>Telefon:</strong></td>
+            <td><strong>{{ "customer.country"|trans }}:</strong></td>
+            <td>{{ customer.country.De }}</td>
+        </tr>
+        <tr>
+            <td><strong>{{ "customer.phone"|trans }}:</strong></td>
             <td>{{ customer.phone }}</td>
         </tr>
         <tr>
-            <td><strong>Fax:</strong></td>
+            <td><strong>{{ "customer.fax"|trans }}:</strong></td>
             <td>{{ customer.fax }}</td>
         </tr>
         <tr>
-            <td><strong>E-Mail:</strong></td>
+            <td><strong>{{ "customer.email"|trans }}:</strong></td>
             <td><a href="mailto:{{ customer.email }}">{{ customer.email }}</a></td>
         </tr>
         <tr>
-            <td><strong>Anmerkungen:</strong></td>
+            <td><strong>{{ "customer.notes"|trans }}:</strong></td>
             <td>{{ customer.notes }}</td>
         </tr>
     </table>
