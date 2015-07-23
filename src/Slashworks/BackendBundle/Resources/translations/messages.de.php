@@ -55,7 +55,7 @@ return array (
   "install.label.mailerUser" => 'E-Mail Benutzer:',
   "install.label.mailerPassword" => 'E-Mail Passwort:',
   "install.submit" => 'Speichern',
-  "install.form.errors" => 'Bitte füllen Sie alle gekenntzeichneten Felder aus',
+  "install.form.errors" => 'Bitte füllen Sie alle gekennzeichneten Felder aus',
   "install.requirements" => 'Installationsvoraussetzungen',
   "system.still_next" => 'Trotzdem fortfahren',
   "Vendor libraries must be installed" => 'Drittanbieter-Bibliotheken müssen installiert sein',

@@ -21,7 +21,6 @@
     "phpseclib/phpseclib": "*"
   },
   "require-dev": {
-    "phpseclib/phpseclib": "*",
     "sensio/generator-bundle": "~2.3"
   },
   "scripts": {

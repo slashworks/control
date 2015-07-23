@@ -63,6 +63,7 @@
         public static function call($method, $params, $url, $publickey, $oRemoteApp = null)
         {
 
+            $response = "";
             try {
                 $sOldErrorhandler = set_error_handler('Slashworks\AppBundle\Services\Api::errorHandler');
 
@@ -117,7 +118,10 @@
                 curl_setopt($oRequest, CURLOPT_RETURNTRANSFER, true);
                 $response    = curl_exec($oRequest);
                 $iHttpStatus = curl_getinfo($oRequest, CURLINFO_HTTP_CODE);
+                $error = curl_error($oRequest);
                 curl_close($oRequest);
+
+                $rawResponse = $response;
 
                 if ($response == "") {
                     throw new \Exception("No content received");
@@ -125,9 +129,8 @@
                 if ($iHttpStatus === 200) {
                     $response = json_decode($response, true);
 
-
                     if (!isset($response['data'])) {
-                        throw new \Exception("Invalid response format");
+                        throw new \Exception("Invalid response format: ".htmlentities($rawResponse));
                     }
 
                     $privateKey = file_get_contents(__DIR__ . "/../Resources/private/api/keys/server/private.key");
@@ -136,12 +139,17 @@
                     $decoded          = $rsa->decrypt($data);
                     $response['data'] = json_decode($decoded, true);
                     if (!is_array($response['data'])) {
-                        throw new \Exception("Invalid response format");
+                        throw new \Exception("Invalid response format: ".htmlentities($rawResponse));
                     }
 
                     $response['data']['statuscode'] = $iHttpStatus;
+                    if($iHttpStatus !== 200){
+                        $response['error'] = true;
+                    }
+
 
                     ApiLog::create($iHttpStatus, $oRemoteApp->getId(), $decoded);
+
 
                     restore_error_handler();
 
@@ -156,6 +164,7 @@
                         "statuscode" => $iHttpStatus,
                         "result"     => json_encode(array(
                                                         "status"     => false,
+                                                        "error"     => true,
                                                         "statuscode" => $iHttpStatus,
                                                         "message"    => $response
                                                     )
@@ -169,16 +178,19 @@
                 restore_error_handler();
                 ApiLog::create(-1, $oRemoteApp->getId(), $e->getMessage());
 
+
                 return array(
                     "statuscode" => $iHttpStatus,
                     "result"     => json_encode(array(
                                                     "status"     => false,
+                                                    "error"     => true,
                                                     "statuscode" => -1,
                                                     "message"    => $e->getMessage()
                                                 )
                     )
                 );
             } catch (\Exception $e) {
+
 
                 restore_error_handler();
                 ApiLog::create(-1, $oRemoteApp->getId(), $e->getMessage());
@@ -187,6 +199,7 @@
                     "statuscode" => 500,
                     "result"     => json_encode(array(
                                                     "status"     => false,
+                                                    "error"     => true,
                                                     "statuscode" => -1,
                                                     "message"    => $e->getMessage()
                                                 )

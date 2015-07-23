@@ -84,7 +84,9 @@ SYSTEM.runSingleApiCall = function (id, url, obj) {
                     $(document).trigger("api-call-row-update-" + id, [data]);
 
                     if (data.Statuscode != 200) {
+                        console.log(data);
                         SYSTEM.openModal("/backend/remoteapp/api/error/" + data.Statuscode);
+                        SYSTEM.notify(data, "error");
                     } else {
                         SYSTEM.notify("Request for \"" + data.Name + "\" successful", "success");
 
@@ -206,7 +208,7 @@ $(document).ready(function () {
 
     // Requires jQuery!
     jQuery.ajax({
-        url: "http://tickets.slash.works/s/c5101030b5338652362902ee197d6f7a-T/de_DEg081af/64020/17/1.4.25/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=de-DE&collectorId=f3a6db1a",
+        url: "//tickets.slash.works/s/c5101030b5338652362902ee197d6f7a-T/de_DEg081af/64020/17/1.4.25/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=de-DE&collectorId=f3a6db1a",
         type: "get",
         cache: true,
         dataType: "script"

@@ -28,10 +28,13 @@
     use Slashworks\AppBundle\Model\RemoteAppQuery;
     use Slashworks\AppBundle\Model\RemoteHistoryContaoQuery;
     use Slashworks\AppBundle\Services\Api;
+    use Slashworks\BackendBundle\Helper\InstallHelper;
     use Slashworks\BackendBundle\Model\SystemSettings;
     use Slashworks\libs\UnzipFile;
     use Slashworks\libs\Zip;
     use Symfony\Component\Console\Input\ArgvInput;
+    use Symfony\Component\Console\Output\BufferedOutput;
+    use Symfony\Component\Console\Output\ConsoleOutput;
     use Symfony\Component\Console\Output\NullOutput;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -171,11 +174,14 @@
             } else {
                 $aData = json_decode($sData, true);
                 if (empty($aData)) {
+                    $this->get('logger')->error($this->get("translator")->trans("license.update.failed_lico"), array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
                     $sHtml = "<script>alert('" . $this->get("translator")->trans("license.update.failed_lico") . "');</script>";
                 } else {
                     if (isset($aData['message'])) {
+                        $this->get('logger')->error( $aData['message'], array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
                         $sHtml = "<script>alert('" . $aData['message'] . "');</script>";
                     } else {
+                        $this->get('logger')->error($this->get("translator")->trans("license.update.failed_lico"), array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
                         $sHtml = "<script>alert('" . $this->get("translator")->trans("license.update.failed_lico") . "');</script>";
                     }
                 }
@@ -229,13 +235,17 @@
                         $sResult['success'] = true;
                         $sResult['message'] = $this->get("translator")->trans("remote_app.api.update.successful");
 
+                        $this->get('logger')->info("Api-Call successful", array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName()));
+
                         $oRemoteApp->setWebsiteHash($mResult['result']['website_hash']);
                         $oRemoteApp->save();
                     } else {
+                        $this->get('logger')->error("Unknown error in ".__FILE__." on line ".__LINE__." - Result: ".json_encode($mResult), array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
                         throw new \Exception("error in " . __FILE__ . " on line " . __LINE__);
                     }
                 }
             } catch (\Exception $e) {
+                $this->get('logger')->error($e->getMessage(), array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
                 $sResult['success'] = false;
                 $sResult['message'] = $e->getMessage();
             }
@@ -260,15 +270,15 @@
         /**
          * Get Error-Template
          *
-         * @param $iCode
+         * @param $code
          *
          * @return \Symfony\Component\HttpFoundation\Response
          */
-        public function errorAction($iCode)
+        public function errorAction($code)
         {
 
             // catch non standard errors
-            if (!in_array($iCode, array(
+            if (!in_array($code, array(
                 400,
                 401,
                 403,
@@ -281,11 +291,11 @@
                 504
             ))
             ) {
-                $iCode = 0;
+                $code = 0;
             }
 
             return $this->render('SlashworksAppBundle:Api:error.html.twig', array(
-                'code' => $iCode
+                'code' => $code
             ));
         }
 
@@ -302,13 +312,13 @@
         public function runSingleApiCallAction($id)
         {
 
+
             $sLico = SystemSettings::get("lico");
             $iLvdc = SystemSettings::get("lvdc");
 
             if ($iLvdc < strtotime("-7 days")) {
                 $aRemoteApps = RemoteAppQuery::create()->filterByWebsiteHash(null, \Criteria::ISNOTNULL);
                 $lico        = $sLico . "/api/lvdc/" . base64_encode($this->_getSiteURL()) . "/" . $aRemoteApps->count();
-
                 try {
                     $res = @file_get_contents($lico);
                     if ($res === false) {
@@ -344,22 +354,44 @@
                                                 '--app=' . $id,
                                                 '--force'
                                             ));
-                    $output = new NullOutput();
 
+
+                    $output = new BufferedOutput();
                     // Run the command
                     $retval     = $command->run($input, $output);
                     $oRemoteApp = RemoteAppQuery::create()->findOneById($id);
                     $sJsonData  = $this->renderView('SlashworksAppBundle:RemoteApp:data.json.twig', array('entities' => array($oRemoteApp)));
                     $aData      = json_decode($sJsonData, true);
 
+                    $sReturn = $output->fetch();
+                    $aReturn = json_decode($sReturn, true);
 
-                    if (!$retval) {
-                        $aResponse = $aData;
-                    } else {
-                        $aResponse = array("error" => true);
+                    if($aReturn !== false){
+                        if(is_array($aReturn)){
+                            if($aReturn['status'] === false) {
+                                $this->get('logger')->error($aReturn['message'], array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
+                                $aResponse = $aReturn;
+                            }elseif($aReturn['status'] === true) {
+                                $this->get('logger')->info("Api-Call successful", array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName()));
+                                $aResponse = $aData;
+                            } else {
+                                $this->get('logger')->error("Unknown error in ".__FILE__." on line ".__LINE__, array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
+                                $aResponse = array("error" => true);
+                            }
+                        }
+                    }else {
+
+                        if (!$retval) {
+                            $this->get('logger')->info("Api-Call successful", array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName()));
+                            $aResponse = $aData;
+                        } else {
+                            $this->get('logger')->error("Unknown error in ".__FILE__." on line ".__LINE__, array("Method" => __METHOD__, "RemoteApp" => $oRemoteApp->getName(), "RemoteURL" => $oRemoteApp->getFullApiUrl()));
+                            $aResponse = array("error" => true);
+                        }
                     }
                 }
             } catch (\Exception $e) {
+                $this->get('logger')->error($e->getMessage());
                 $aResponse = array(
                     "error"   => true,
                     "message" => $e->getMessage()

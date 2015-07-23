@@ -63,7 +63,6 @@
          */
         protected function execute(InputInterface $input, OutputInterface $output)
         {
-
             // define colors if verbose
             if ($input->hasOption('verbose')) {
                 if ($input->getOption('verbose')) {
@@ -114,8 +113,10 @@
                                 $output->write('     ' . date('d.m.Y H:i') . ' <comment>Job:</comment> <fg=magenta>' . $oRemoteApp->getName() . '</fg=magenta> <comment>runnning...</comment>');
                             }
                         }
+
                         // make api call
                         $aResponse = $this->_makeCall($oRemoteApp);
+
 
                         // save response to database
                         $this->_saveResponse($aResponse, $oRemoteApp);
@@ -124,7 +125,11 @@
                         if ($input->hasOption('verbose')) {
                             if ($input->getOption('verbose')) {
                                 $output->write("\t\t" . $this->_getStatus($aResponse['status']) . "\n");
+                            }else {
+                                $output->write(json_encode($aResponse));
                             }
+                        }else {
+                            $output->write(json_encode($aResponse));
                         }
                         $iCnt++;
 
@@ -228,6 +233,13 @@
             }
             $aReturn['statuscode'] = $sStatuscode;
 
+            if($sStatuscode != 200) {
+                $this->getContainer()->get('logger')->error("ERROR in ".__FILE__." on line ".__LINE__." - ".json_encode($aReturn), array("Method"    => __METHOD__,
+                                                                     "RemoteApp" => $oRemoteApp->getName(),
+                                                                     "RemoteURL" => $oRemoteApp->getFullApiUrl()
+                ));
+            }
+
             return $aReturn;
         }
 
@@ -309,6 +321,10 @@
                 $oRemoteApp->save();
 
             } else {
+                $this->getContainer()->get('logger')->error('Class \'' . $sClassName . '\' not found... ', array("Method"    => __METHOD__,
+                                                                                                                                         "RemoteApp" => $oRemoteApp->getName(),
+                                                                                                                                         "RemoteURL" => $oRemoteApp->getFullApiUrl()
+                ));
                 throw new \Exception('Class \'' . $sClassName . '\' not found... ');
             }
         }

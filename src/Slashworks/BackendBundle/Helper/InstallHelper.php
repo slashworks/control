@@ -78,7 +78,7 @@
         }
 
 
-        private static function createKeys(){
+        public static function createKeys(){
             $rsa = new \Crypt_RSA();
             $aKeys = $rsa->createKey(512);
             if(empty($aKeys)){

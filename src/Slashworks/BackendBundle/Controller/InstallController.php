@@ -44,7 +44,8 @@
         {
 
             // include symfony requirements class
-            require_once dirname(__FILE__) . '/../../../../app/SymfonyRequirements.php';
+            $sAppPath = $this->getParameter('kernel.root_dir');
+            require_once $sAppPath.'/SymfonyRequirements.php';
             $symfonyRequirements = new \SymfonyRequirements();
 
             // add additional requirement for mcrypt
