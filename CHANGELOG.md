@@ -1,5 +1,10 @@
 # Changelog 
 
+## [0.5.0](https://github.com/slashworks/control/releases/tag/0.5.0) (2015-07-23)
+
+- Diverse Fehlerkorrekturen (Vielen Dank an die Tester)
+- Umbau der Struktur - Bundle ausgelagert um besser Updates verteilen zu können
+
 
 ## [0.4.9](https://github.com/slashworks/control/releases/tag/0.4.9) (2015-07-14)
 
