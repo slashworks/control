@@ -18,11 +18,18 @@
     "incenteev/composer-parameter-handler": "~2.0",
     "ircmaxell/password-compat": "~1.0.3",
     "propel/propel-bundle":"1.4.*",
-    "phpseclib/phpseclib": "*"
+    "phpseclib/phpseclib": "*",
+    "slashworks/control-bundle": "*"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/slashworks/control-bundle"
+    }
+  ],
   "scripts": {
     "post-install-cmd": [
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
