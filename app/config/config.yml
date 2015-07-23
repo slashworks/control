@@ -28,8 +28,8 @@ twig:
         - 'SlashworksBackendBundle:Form:form_div_layout.html.twig'
         - 'SlashworksBackendBundle:Form:form_row.html.twig'
     paths:
-            "%kernel.root_dir%/../src/Slashworks/AppBundle/Resources/views": app_theme
-            "%kernel.root_dir%/../src/Slashworks/BackendBundle/Resources/views": app_theme
+            "%kernel.root_dir%/../vendor/slashworks/control-bundle/src/Slashworks/AppBundle/Resources/views": app_theme
+            "%kernel.root_dir%/../vendor/slashworks/control-bundle/src/Slashworks/BackendBundle/Resources/views": app_theme
 
 
 

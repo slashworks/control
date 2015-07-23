@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f555357454d38c64f9ebc9b20a828a30",
+    "hash": "05efd53b1ccb49d8478569287730f32f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1145,6 +1145,53 @@
             "time": "2015-05-28 14:22:40"
         },
         {
+            "name": "slashworks/control-bundle",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slashworks/control-bundle.git",
+                "reference": "eaaf0f1094fb3210f6b8336385656e2dcfb0a037"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slashworks/control-bundle/zipball/eaaf0f1094fb3210f6b8336385656e2dcfb0a037",
+                "reference": "eaaf0f1094fb3210f6b8336385656e2dcfb0a037",
+                "shasum": ""
+            },
+            "require": {
+                "incenteev/composer-parameter-handler": "~2.0",
+                "ircmaxell/password-compat": "~1.0.3",
+                "php": ">=5.3.9",
+                "phpseclib/phpseclib": "*",
+                "propel/propel-bundle": "1.4.*",
+                "sensio/distribution-bundle": "~3.0,>=3.0.12",
+                "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
+                "sensiolabs/security-checker": "~2.0",
+                "symfony/assetic-bundle": "~2.3",
+                "symfony/monolog-bundle": "~2.4",
+                "symfony/swiftmailer-bundle": "~2.3",
+                "symfony/symfony": "2.7.*"
+            },
+            "require-dev": {
+                "sensio/generator-bundle": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "": "./src"
+                }
+            },
+            "license": [
+                "LGPL-3.0+"
+            ],
+            "description": "Bundle for contao monitoring tool",
+            "support": {
+                "source": "https://github.com/slashworks/control-bundle/tree/0.1.0",
+                "issues": "https://github.com/slashworks/control-bundle/issues"
+            },
+            "time": "2015-07-23 12:21:16"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.1",
             "source": {
@@ -1436,16 +1483,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.7.1",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "932b6e7499c670f4db6d0b871477a4a3ca161e74"
+                "reference": "969d709ad428076bf1084e386dc26dd904d9fb84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/932b6e7499c670f4db6d0b871477a4a3ca161e74",
-                "reference": "932b6e7499c670f4db6d0b871477a4a3ca161e74",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/969d709ad428076bf1084e386dc26dd904d9fb84",
+                "reference": "969d709ad428076bf1084e386dc26dd904d9fb84",
                 "shasum": ""
             },
             "require": {
@@ -1554,7 +1601,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-06-11 21:15:28"
+            "time": "2015-07-13 19:27:49"
         },
         {
             "name": "twig/twig",
