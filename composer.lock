@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "05efd53b1ccb49d8478569287730f32f",
+    "hash": "703300469a81b19a4c840efa6828d10c",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -739,16 +739,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "0.3.10",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d15bba1edcc7c89e09cc74c5d961317a8b947bf4"
+                "reference": "844134df95e42b93ed5506a2d11ca5accda99412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d15bba1edcc7c89e09cc74c5d961317a8b947bf4",
-                "reference": "d15bba1edcc7c89e09cc74c5d961317a8b947bf4",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/844134df95e42b93ed5506a2d11ca5accda99412",
+                "reference": "844134df95e42b93ed5506a2d11ca5accda99412",
                 "shasum": ""
             },
             "require": {
@@ -758,19 +758,15 @@
                 "phing/phing": "~2.7",
                 "phpunit/phpunit": "~4.0",
                 "sami/sami": "~2.0",
-                "squizlabs/php_codesniffer": "~1.5"
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "suggest": {
                 "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
-                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a wide variety of cryptographic operations.",
-                "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 4.3.3."
+                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations.",
+                "pear-pear/PHP_Compat": "Install PHP_Compat to get phpseclib working on PHP < 5.0.0."
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.3-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Crypt": "phpseclib/",
@@ -833,7 +829,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2015-01-28 21:50:33"
+            "time": "2015-08-04 02:22:12"
         },
         {
             "name": "propel/propel-bundle",
@@ -1046,16 +1042,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.9",
+            "version": "v3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "0616fd568da051adc19ca63006cc808531ba2da4"
+                "reference": "18fc2063c4d6569cdca47a39fbac32342eb65f3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/0616fd568da051adc19ca63006cc808531ba2da4",
-                "reference": "0616fd568da051adc19ca63006cc808531ba2da4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/18fc2063c4d6569cdca47a39fbac32342eb65f3c",
+                "reference": "18fc2063c4d6569cdca47a39fbac32342eb65f3c",
                 "shasum": ""
             },
             "require": {
@@ -1097,7 +1093,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2015-06-05 13:59:21"
+            "time": "2015-08-03 11:59:27"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -1146,23 +1142,23 @@
         },
         {
             "name": "slashworks/control-bundle",
-            "version": "0.1.0",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slashworks/control-bundle.git",
-                "reference": "eaaf0f1094fb3210f6b8336385656e2dcfb0a037"
+                "reference": "2ba86d96f1f41f9424e2229c4e2b13017e973f89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slashworks/control-bundle/zipball/eaaf0f1094fb3210f6b8336385656e2dcfb0a037",
-                "reference": "eaaf0f1094fb3210f6b8336385656e2dcfb0a037",
+                "url": "https://api.github.com/repos/slashworks/control-bundle/zipball/2ba86d96f1f41f9424e2229c4e2b13017e973f89",
+                "reference": "2ba86d96f1f41f9424e2229c4e2b13017e973f89",
                 "shasum": ""
             },
             "require": {
                 "incenteev/composer-parameter-handler": "~2.0",
                 "ircmaxell/password-compat": "~1.0.3",
                 "php": ">=5.3.9",
-                "phpseclib/phpseclib": "*",
+                "phpseclib/phpseclib": "1.0.*",
                 "propel/propel-bundle": "1.4.*",
                 "sensio/distribution-bundle": "~3.0,>=3.0.12",
                 "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
@@ -1186,10 +1182,10 @@
             ],
             "description": "Bundle for contao monitoring tool",
             "support": {
-                "source": "https://github.com/slashworks/control-bundle/tree/0.1.0",
+                "source": "https://github.com/slashworks/control-bundle/tree/0.5.4",
                 "issues": "https://github.com/slashworks/control-bundle/issues"
             },
-            "time": "2015-07-23 12:21:16"
+            "time": "2015-08-04 09:22:43"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1370,7 +1366,7 @@
         },
         {
             "name": "symfony/propel1-bridge",
-            "version": "v2.6.10",
+            "version": "v2.6.11",
             "target-dir": "Symfony/Bridge/Propel1",
             "source": {
                 "type": "git",
@@ -1483,16 +1479,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.7.2",
+            "version": "v2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "969d709ad428076bf1084e386dc26dd904d9fb84"
+                "reference": "a9af4708b4bb650c4897e9b8dfbfbdb2ea5f0486"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/969d709ad428076bf1084e386dc26dd904d9fb84",
-                "reference": "969d709ad428076bf1084e386dc26dd904d9fb84",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/a9af4708b4bb650c4897e9b8dfbfbdb2ea5f0486",
+                "reference": "a9af4708b4bb650c4897e9b8dfbfbdb2ea5f0486",
                 "shasum": ""
             },
             "require": {
@@ -1601,20 +1597,20 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-07-13 19:27:49"
+            "time": "2015-07-31 13:24:45"
         },
         {
             "name": "twig/twig",
-            "version": "v1.18.2",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602"
+                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e8e6575abf6102af53ec283f7f14b89e304fa602",
-                "reference": "e8e6575abf6102af53ec283f7f14b89e304fa602",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/edbeaf43b0a606cdaadc32a11d2673614a377b90",
+                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90",
                 "shasum": ""
             },
             "require": {
@@ -1623,7 +1619,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-master": "1.19-dev"
                 }
             },
             "autoload": {
@@ -1658,7 +1654,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-06-06 23:31:24"
+            "time": "2015-07-31 13:45:26"
         }
     ],
     "packages-dev": [

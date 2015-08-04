@@ -1,5 +1,11 @@
 # Changelog 
 
+## [0.5.1](https://github.com/slashworks/control/releases/tag/0.5.1) (2015-07-23)
+
+- Diverse Fehlerkorrekturen
+- Pfadanpassungen af Grund der Umstrukturierung
+
+
 ## [0.5.0](https://github.com/slashworks/control/releases/tag/0.5.0) (2015-07-23)
 
 - Diverse Fehlerkorrekturen (Vielen Dank an die Tester)
