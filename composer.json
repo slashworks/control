@@ -18,7 +18,7 @@
     "incenteev/composer-parameter-handler": "~2.0",
     "ircmaxell/password-compat": "~1.0.3",
     "propel/propel-bundle":"1.4.*",
-    "phpseclib/phpseclib": "*",
+    "phpseclib/phpseclib": "1.0.*",
     "slashworks/control-bundle": "*"
   },
   "require-dev": {
