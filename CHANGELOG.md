@@ -1,5 +1,11 @@
 # Changelog 
 
+## [0.6.0](https://github.com/slashworks/control/releases/tag/0.6.0) (2015-10-26)
+
+- Diverse Fehlerkorrekturen
+- Lizenzmodel geändert
+
+
 ## [0.5.1](https://github.com/slashworks/control/releases/tag/0.5.1) (2015-07-23)
 
 - Diverse Fehlerkorrekturen
