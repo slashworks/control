@@ -19,7 +19,7 @@
     "ircmaxell/password-compat": "~1.0.3",
     "propel/propel-bundle":"1.4.*",
     "phpseclib/phpseclib": "1.0.*",
-    "slashworks/control-bundle": "*"
+    "slashworks/control-bundle": "0.*"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3"
