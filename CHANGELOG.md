@@ -6,6 +6,7 @@
 - Diverse Fehlerkorrekturen (Vielen Dank an die Tester)
 - Umbau der Struktur - Bundle ausgelagert um besser Updates verteilen zu können
 - Lizenzprüfung refaktoriert
+- Migrationsscript hinzugefügt
 
 
 ## [0.5.1](https://github.com/slashworks/control/releases/tag/0.5.1) (2015-07-23)
