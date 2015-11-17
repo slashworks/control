@@ -1193,16 +1193,16 @@
         },
         {
             "name": "slashworks/control-bundle",
-            "version": "0.6.1",
+            "version": "0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slashworks/control-bundle.git",
-                "reference": "6bc67cb22287580198f9c93dee27070cfb8feced"
+                "reference": "f293e328a503cd114f25d70465c3bb524e7d31d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slashworks/control-bundle/zipball/6bc67cb22287580198f9c93dee27070cfb8feced",
-                "reference": "6bc67cb22287580198f9c93dee27070cfb8feced",
+                "url": "https://api.github.com/repos/slashworks/control-bundle/zipball/f293e328a503cd114f25d70465c3bb524e7d31d4",
+                "reference": "f293e328a503cd114f25d70465c3bb524e7d31d4",
                 "shasum": ""
             },
             "require": {
@@ -1234,10 +1234,10 @@
             ],
             "description": "Bundle for contao monitoring tool",
             "support": {
-                "source": "https://github.com/slashworks/control-bundle/tree/0.6.1",
+                "source": "https://github.com/slashworks/control-bundle/tree/0.6.5",
                 "issues": "https://github.com/slashworks/control-bundle/issues"
             },
-            "time": "2015-11-17 13:32:59"
+            "time": "2015-11-17 16:08:15"
         },
         {
             "name": "swiftmailer/swiftmailer",
