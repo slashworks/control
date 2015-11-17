@@ -1,5 +1,13 @@
 # Changelog 
 
+
+## [0.6.1](https://github.com/slashworks/control/releases/tag/0.6.1) (2015-11-17)
+
+- Diverse Fehlerkorrekturen (Vielen Dank an die Tester)
+- Umbau der Struktur - Bundle ausgelagert um besser Updates verteilen zu können
+- Lizenzprüfung refaktoriert
+
+
 ## [0.5.1](https://github.com/slashworks/control/releases/tag/0.5.1) (2015-07-23)
 
 - Diverse Fehlerkorrekturen
