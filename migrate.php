@@ -51,8 +51,6 @@
             }
             $sResponse = "OK";
 
-            // @todo check
-
             if (!copy($sBackupPath . "/parameters.yml", __DIR__ . '/../app/config/parameters.yml')) {
                 $sResponse = "Fehler beim zurückspielen der Datei <strong>_backup/public.key</strong>. Möglicherweise existiert sie im Backup-Verzeichnis nicht.";
             } else {
@@ -64,7 +62,6 @@
                     }
                 }
             }
-
 
             /**
              * delete old src-folder
@@ -401,7 +398,7 @@
                     if(data == "OK"){
                         $('#do_backup').fadeOut('slow',function(){
                             $('#backup_next').fadeIn('slow');
-                            $('.backup_message .panel-success .panel-body p').html('Success');
+                            $('.backup_message .panel-success .panel-body p').html('Aktion erfolgreich');
                             $('.backup_message .panel-success').fadeIn();
                         });
                     }else{
@@ -419,7 +416,7 @@
                     if(data == "OK"){
                         $('#do_restore').fadeOut('slow',function(){
                             $('#restore_next').fadeIn('slow');
-                            $('.restore_message .panel-success .panel-body p').html('Success');
+                            $('.restore_message .panel-success .panel-body p').html('Aktion erfolgreich');
                             $('.restore_message .panel-success').fadeIn();
                         });
                     }else{
