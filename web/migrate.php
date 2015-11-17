@@ -199,9 +199,13 @@
                             <div class="tab-pane" id="tab1">
 
                                 <h3>Bevor wir starten...</h3>
+
                                 <p>
-                                Dieser migrationsassistent soll dabei behilflich sein, von der alten Version des Monitoringstools auf die neue Version umzustellen. Dabei müssen einige Dingebeachtet werden, welche im Laufe dieses Vorgangs erläutert werden. Bitte lesen Sie sich alle Schritte genau durch und gefolgen Sie die Anweisungen. Bitte erstellen Sie sicherheitshalber ein Backup der Datenbank sowie der eigentlichen Dateien um im Fehlerfall wieder auf den alten Stand zurückstellen zu können.<br><br>Bei Problemen und Fragen wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
+                                    Dieser migrationsassistent soll dabei behilflich sein, von der alten Version des Monitoringstools auf die neue Version umzustellen. Dabei müssen einige Dingebeachtet werden, welche im Laufe dieses
+                                    Vorgangs erläutert werden. Bitte lesen Sie sich alle Schritte genau durch und gefolgen Sie die Anweisungen. Bitte erstellen Sie sicherheitshalber ein Backup der Datenbank sowie der eigentlichen Dateien um
+                                    im Fehlerfall wieder auf den alten Stand zurückstellen zu können.<br><br>Bei Problemen und Fragen wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
                                 </p>
+
                                 <p>
                                     <button type="button" class="button-next btn btn-primary">Migration starten</button>
                                 </p>
@@ -217,9 +221,14 @@
 
 
                                 <h3>Alte Dateien sichern</h3>
+
                                 <p>
-                                Zunächst werden für die neue Installation benötigte Dateien gesichert. Dabei handelt es sich zum einen um die Datei <strong>parameters.yml</strong>, in der alle systemrelevanten Informationen wie Zugangsdaten etc. gespeichert sind, und zum anderen den beiden Dateien <strong>public.key</strong> und <strong>private.key</strong>, welche für die individuelle Verschlüsselung zuständig sind.<br><br>Diese Dateien werden nun in einen Ordner namens <strong>_backup</strong> gesichert. Sollte dieser Ordner nach Abschluß des Assistenten und nach erfolgreicher Prüfung der Installation noch vorhanden sein, muss dieser unbedingt gelöscht werden.
+                                    Zunächst werden für die neue Installation benötigte Dateien gesichert. Dabei handelt es sich zum einen um die Datei <strong>parameters.yml</strong>, in der alle systemrelevanten Informationen wie
+                                    Zugangsdaten etc. gespeichert sind, und zum anderen den beiden Dateien <strong>public.key</strong> und <strong>private.key</strong>, welche für die individuelle Verschlüsselung zuständig sind.<br><br>Diese
+                                    Dateien werden nun in einen Ordner namens <strong>_backup</strong> gesichert. Sollte dieser Ordner nach Abschluß des Assistenten und nach erfolgreicher Prüfung der Installation noch vorhanden sein, muss
+                                    dieser unbedingt gelöscht werden.
                                 </p>
+
                                 <p>
                                     <button type="button" class="btn btn-primary" onclick="doBackup();" id="do_backup">Daten Sichern</button>
                                 </p>
@@ -297,9 +306,12 @@
                             <div class="tab-pane" id="tab4">
 
                                 <h3>Wiederherstellnug</h3>
+
                                 <p>
-                                Abschließend werden nun die zuvor gesicherten Dateien an die richtigen Stellen in der neuen Ordnerstruktur abgelegt. Wenn dieser Vorgang erfolgreich war, sollte das System sofort wieder einsatzbereit sein. Ist dies nicht der Fall, wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>.
+                                    Abschließend werden nun die zuvor gesicherten Dateien an die richtigen Stellen in der neuen Ordnerstruktur abgelegt. Wenn dieser Vorgang erfolgreich war, sollte das System sofort wieder einsatzbereit
+                                    sein. Ist dies nicht der Fall, wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>.
                                 </p>
+
                                 <p>
                                     <button type="button" class="btn btn-primary" onclick="doRestore();" id="do_restore">Daten wiederherstellen</button>
                                 </p>
@@ -334,8 +346,10 @@
                             <div class="tab-pane" id="tab5">
 
                                 <h3>Fortune, passion, and power.</h3>
+
                                 <p>
-                                Die Anwendung sollte nun wie gewohnt funktionieren. Zukünftig sind nun auch Updates via <strong>composer</strong> möglich.<br><br>Bei Problemen wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
+                                    Die Anwendung sollte nun wie gewohnt funktionieren. Zukünftig sind nun auch Updates via <strong>composer</strong> möglich.<br><br>Bei Problemen wenden Sie sich gern an <a
+                                        href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
                                 </p>
                             </div>
                             <div style="height:20px;">
