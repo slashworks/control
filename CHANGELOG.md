@@ -1,4 +1,10 @@
-# Changelog 
+# Changelog
+
+
+## [0.6.5](https://github.com/slashworks/control/releases/tag/0.6.5) (2015-11-17)
+
+- Anpassungen am Migrationsscript
+- Versionsnummer wird nun im Menü angezeigt
 
 
 ## [0.6.1](https://github.com/slashworks/control/releases/tag/0.6.1) (2015-11-17)
