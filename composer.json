@@ -43,7 +43,7 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-      "chmod +x init_update_app && ./update_app"
+      "chmod +x update_app && ./update_app"
     ]
   },
   "config": {
