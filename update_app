@@ -1,0 +1,7 @@
+#!/bin/bash
+if ! [ `git branch --no-color | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' | grep develop` ]
+then
+    git fetch --tags
+    latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+    git checkout $latestTag
+fi

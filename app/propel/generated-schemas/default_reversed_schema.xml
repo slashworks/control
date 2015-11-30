@@ -22,15 +22,6 @@
     <column name="code" phpName="Code" type="CHAR" size="2" required="true"/>
     <column name="en" phpName="En" type="VARCHAR" size="50" required="true" defaultValue=""/>
     <column name="de" phpName="De" type="VARCHAR" size="50" required="true" defaultValue=""/>
-    <index name="de">
-      <index-column name="de"/>
-    </index>
-    <index name="en">
-      <index-column name="en"/>
-    </index>
-    <index name="code">
-      <index-column name="code"/>
-    </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
@@ -63,8 +54,8 @@
     <column name="id" phpName="Id" type="INTEGER" size="10" sqlType="int(10) unsigned" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="max_clients" phpName="MaxClients" type="INTEGER" size="3" required="true"/>
     <column name="domain" phpName="Domain" type="VARCHAR" size="255" required="true"/>
+    <column name="valid_until" phpName="ValidUntil" type="VARCHAR" size="255" required="true"/>
     <column name="serial" phpName="Serial" type="LONGVARCHAR" required="true"/>
-    <column name="valid_until" phpName="ValidUntil" type="INTEGER" size="1" sqlType="int(1) unsigned" required="true" defaultValue="0"/>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
@@ -95,6 +86,7 @@
     <column name="notification_sender" phpName="NotificationSender" type="VARCHAR" size="255" required="true" defaultValue=""/>
     <column name="notification_change" phpName="NotificationChange" type="BOOLEAN" size="1" sqlType="tinyint(1) unsigned" required="true" defaultValue="true"/>
     <column name="notification_error" phpName="NotificationError" type="BOOLEAN" size="1" sqlType="tinyint(1) unsigned" required="true" defaultValue="true"/>
+    <column name="test" phpName="Test" type="INTEGER" size="1" required="true"/>
     <foreign-key foreignTable="customer" name="remote_app_ibfk_1" onDelete="SET NULL" onUpdate="CASCADE">
       <reference local="customer_id" foreign="id"/>
     </foreign-key>
@@ -124,10 +116,10 @@
     <column name="config_adminEmail" phpName="ConfigAdminemail" type="VARCHAR" size="255" required="true"/>
     <column name="config_cacheMode" phpName="ConfigCachemode" type="VARCHAR" size="10" required="true"/>
     <column name="statuscode" phpName="Statuscode" type="INTEGER" size="3" required="true"/>
-    <column name="extensions" phpName="Extensions" type="BLOB" required="true"/>
-    <column name="log" phpName="Log" type="BLOB" required="false"/>
-    <column name="php" phpName="Php" type="BLOB" required="false"/>
-    <column name="mysql" phpName="Mysql" type="BLOB" required="false"/>
+    <column name="extensions" phpName="Extensions" type="LONGVARCHAR" required="true"/>
+    <column name="log" phpName="Log" type="LONGVARCHAR" required="false"/>
+    <column name="php" phpName="Php" type="LONGVARCHAR" required="false"/>
+    <column name="mysql" phpName="Mysql" type="LONGVARCHAR" required="false"/>
     <foreign-key foreignTable="remote_app" name="remote_history_contao_ibfk_1" onDelete="CASCADE" onUpdate="CASCADE">
       <reference local="remote_app_id" foreign="id"/>
     </foreign-key>
@@ -145,9 +137,6 @@
     <unique name="UNIQ_B63E2EC757698A6A">
       <unique-column name="role"/>
     </unique>
-    <index name="role">
-      <index-column name="role"/>
-    </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>

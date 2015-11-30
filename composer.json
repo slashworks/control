@@ -19,15 +19,16 @@
     "ircmaxell/password-compat": "~1.0.3",
     "propel/propel-bundle":"1.4.*",
     "phpseclib/phpseclib": "1.0.*",
-    "slashworks/control-bundle": "dev-develop"
+    "slashworks/control-bundle": ">= 0.6"
   },
   "require-dev": {
-    "sensio/generator-bundle": "~2.3"
+    "sensio/generator-bundle": "~2.3",
+    "phing/phing": "2.*"
   },
   "repositories": [
     {
       "type": "vcs",
-      "url": "http://git.slash.works/slashworks/control-bundle.git"
+      "url": "https://github.com/slashworks/control-bundle"
     }
   ],
   "scripts": {
@@ -35,12 +36,14 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
-      "echo '\\033[1mPlease go to http://[Your Control URL]/ to beginn the installationprocess\\033[0m'"
+      "echo '\\033[1mPlease go to http://[Your Control URL]/ to beginn the installationprocess\\033[0m'",
+      "chmod +x init_update_app && ./init_update_app"
     ],
     "post-update-cmd": [
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles",
+      "chmod +x update_app && ./update_app"
     ]
   },
   "config": {

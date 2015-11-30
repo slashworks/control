@@ -1,4 +1,26 @@
-# Changelog 
+# Changelog
+
+## [0.7.5](https://github.com/slashworks/control/releases/tag/0.7.5) (2015-11-30)
+
+- Korrekturen der Update-Routinen
+- Korrekturen der .gitignore
+- Fehlerkorrekturen am Updatescript
+- Update-Routine für die Hauptapplikation hinzugefügt
+
+
+## [0.6.5](https://github.com/slashworks/control/releases/tag/0.6.5) (2015-11-17)
+
+- Anpassungen am Migrationsscript
+- Versionsnummer wird nun im Menü angezeigt
+
+
+## [0.6.1](https://github.com/slashworks/control/releases/tag/0.6.1) (2015-11-17)
+
+- Diverse Fehlerkorrekturen (Vielen Dank an die Tester)
+- Umbau der Struktur - Bundle ausgelagert um besser Updates verteilen zu können
+- Lizenzprüfung refaktoriert
+- Migrationsscript hinzugefügt
+
 
 ## [0.6.0](https://github.com/slashworks/control/releases/tag/0.6.0) (2015-10-26)
 
