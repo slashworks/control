@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.7.1](https://github.com/slashworks/control/releases/tag/0.7.0) (2015-11-30)
+
+- Update-Routine für die Hauptapplikation hinzugefügt
+
 
 ## [0.6.5](https://github.com/slashworks/control/releases/tag/0.6.5) (2015-11-17)
 
