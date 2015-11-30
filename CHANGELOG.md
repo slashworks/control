@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.7.2](https://github.com/slashworks/control/releases/tag/0.7.2) (2015-11-30)
+
+- Fehlerkorrekturen am Updatescript
+
+
 ## [0.7.1](https://github.com/slashworks/control/releases/tag/0.7.1) (2015-11-30)
 
 - Update-Routine für die Hauptapplikation hinzugefügt

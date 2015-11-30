@@ -12,7 +12,7 @@
     if (isset($_GET['backup'])) {
         try {
             $sBackupPath = __DIR__ . '/../_backup';
-            mkdir($sBackupPath);
+            @mkdir($sBackupPath);
             $sResponse = "OK";
             if (file_exists(__DIR__ . '/../app/config/parameters.yml') && file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key') && file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')) {
                 if (!copy(__DIR__ . '/../app/config/parameters.yml', $sBackupPath . "/parameters.yml")) {
@@ -47,17 +47,17 @@
         try {
             $sBackupPath = __DIR__ . '/../_backup';
             if (!folder_exist(__DIR__ . '/../vendor/slashworks/control-bundle/src/Slashworks/AppBundle/Resources/private/api/keys/server')) {
-                mkdir(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/', 0777, true);
+                @mkdir(__DIR__ . '/../vendor/slashworks/control-bundle/src/Slashworks/AppBundle/Resources/private/api/keys/server', 0777, true);
             }
             $sResponse = "OK";
 
             if (!copy($sBackupPath . "/parameters.yml", __DIR__ . '/../app/config/parameters.yml')) {
                 $sResponse = "Fehler beim zurückspielen der Datei <strong>_backup/public.key</strong>. Möglicherweise existiert sie im Backup-Verzeichnis nicht.";
             } else {
-                if (!copy($sBackupPath . "/private.key", __DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key')) {
+                if (!copy($sBackupPath . "/private.key", __DIR__ . '/../vendor/slashworks/control-bundle/src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key')) {
                     $sResponse = "Fehler beim zurückspielen der Datei <strong>_backup/private.key</strong>. Möglicherweise existiert sie im Backup-Verzeichnis nicht.";
                 } else {
-                    if (!copy($sBackupPath . "/public.key", __DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')) {
+                    if (!copy($sBackupPath . "/public.key", __DIR__ . '/../vendor/slashworks/control-bundle/src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')) {
                         $sResponse = "Fehler beim zurückspielen der Datei <strong>_backup/public.key</strong>. Möglicherweise existiert sie im Backup-Verzeichnis nicht.";
                     }
                 }
@@ -198,13 +198,30 @@
                                 <h3>Bevor wir starten...</h3>
 
                                 <p>
-                                    Dieser migrationsassistent soll dabei behilflich sein, von der alten Version des Monitoringstools auf die neue Version umzustellen. Dabei müssen einige Dingebeachtet werden, welche im Laufe dieses
+                                    Dieser migrationsassistent soll dabei behilflich sein, von der alten Version des Monitoringstools auf die neue Version umzustellen. Dabei müssen einige Dinge beachtet werden, welche im Laufe dieses
                                     Vorgangs erläutert werden. Bitte lesen Sie sich alle Schritte genau durch und gefolgen Sie die Anweisungen. Bitte erstellen Sie sicherheitshalber ein Backup der Datenbank sowie der eigentlichen Dateien um
                                     im Fehlerfall wieder auf den alten Stand zurückstellen zu können.<br><br>Bei Problemen und Fragen wenden Sie sich gern an <a href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
                                 </p>
 
+                                <p>&nbsp;</p>
+
+                                <?php if (!file_exists(__DIR__ . '/../app/config/parameters.yml') || !file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key') || !file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')):?>
                                 <p>
-                                    <button type="button" class="button-next btn btn-primary">Migration starten</button>
+                                    <h3>Vorrausetzungen:</h3>
+                                <?php
+                                    echo "Folgende Dateien müssen vorhanden sein, damit der Migrationsassistent ordnungsgemäß arbeitet. Evtl. wird eine nicht-kompatible Version verwendet (Version >= 0.6.5, siehe version.txt)<br><br>app/config/parameters.yml <strong>".
+                                         generateLabel(__DIR__ . '/../app/config/parameters.yml')."</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>".
+                                         generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key').
+                                         "</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>".
+                                         generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')."</strong><br><br>";
+                                ?>
+                                </p>
+                                <?php endif; ?>
+
+                                <p>
+                                    <?php if (file_exists(__DIR__ . '/../app/config/parameters.yml') && file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key') && file_exists(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')):?>
+                                        <button type="button" class="button-next btn btn-primary">Migration starten</button>
+                                    <?php endif; ?>
                                 </p>
                             </div>
 
@@ -265,7 +282,7 @@
                                             <h3>Kopieren der neuen Dateien</h3>
 
                                             <p>
-                                                Es ist soweit. Nun müssen die Dateien des neuen Releases kopiert. Dazu entpacke die Zip-Datei und lade alle Dateien auf den Server. Bestätige alle möglichen Hinweise für das Überschreiben von
+                                                Es ist soweit. Nun müssen die Dateien des neuen Releases kopiert werden. Dazu entpacke die Zip-Datei und lade alle Dateien auf den Server. Bestätige alle möglichen Hinweise für das Überschreiben von
                                                 Dateien. Nach Abschluß des Kopiervorgangs sollte die Datei- und Ordnerstruktur wie rechts abgebildet aussehen.<br><br>
                                                 Nachdem dies nun erledigt ist, wird der Assistent nun die zuvor gesicherten Dateien wieder an die richtige Stelle kopieren. Somit sollte die neue Installation sofort wieder einsatzbereit sein.
                                             </p>
@@ -290,7 +307,7 @@
                                     </div>
                                 </div>
                                 <p>
-                                    <button type="button" class="button-next btn btn-primary btn-block">Ich bestätige ich den vorherigen Schritt ausgeführt bzw zur Kenntnis genommen zu haben</button>
+                                    <button type="button" class="button-next btn btn-primary btn-block">Hiermit bestätige ich,  den vorherigen Schritt ausgeführt bzw zur Kenntnis genommen zu haben</button>
                                 </p>
                             </div>
 
@@ -329,7 +346,7 @@
                                             <p>...</p>
                                         </div>
                                     </div>
-                                    <button type="button" class="button-next btn btn-primary" id="restore_next" style="display:block;">Weiter</button>
+                                    <button type="button" class="button-next btn btn-primary" id="restore_next" style="display:none;">Weiter</button>
                                 </div>
 
                             </div>
@@ -404,7 +421,7 @@
                     }else{
                         $('.backup_message .panel-red .panel-body p').html(data);
                         $('.backup_message .panel-red').fadeIn();
-                        setTimeout(function(){$('#backup_next').fadeIn('slow');},2000);
+//                        setTimeout(function(){$('#backup_next').fadeIn('slow');},2000);
                     }
                 });
             });
