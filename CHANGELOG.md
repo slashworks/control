@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.7.3](https://github.com/slashworks/control/releases/tag/0.7.3) (2015-11-30)
+
+- Korrekturen der .gitignore
+
+
 ## [0.7.2](https://github.com/slashworks/control/releases/tag/0.7.2) (2015-11-30)
 
 - Fehlerkorrekturen am Updatescript
