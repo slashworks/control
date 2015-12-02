@@ -28,7 +28,7 @@
                 }
             } else {
                 @rmdir($sBackupPath);
-                $sResponse = "Die zu sichernden Dateien wurden nicht gefunden. Folgende Dateien wurden gesucht:<br><br>app/config/parameters.yml <strong>".generateLabel(__DIR__ . '/../app/config/parameters.yml')."</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>".generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key')."</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>".generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key')."</strong><br><br>Wenn Sie dennoch fortfahren möchten, klicken Sie auf <strong>Weiter</strong>.";
+                $sResponse = "Die zu sichernden Dateien wurden nicht gefunden. Folgende Dateien wurden gesucht:<br><br>app/config/parameters.yml <strong>" . generateLabel(__DIR__ . '/../app/config/parameters.yml') . "</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>" . generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key') . "</strong><br>src/Slashworks/AppBundle/Resources/private/api/keys/server/private.key <strong>" . generateLabel(__DIR__ . '/../src/Slashworks/AppBundle/Resources/private/api/keys/server/public.key') . "</strong><br><br>Wenn Sie dennoch fortfahren möchten, klicken Sie auf <strong>Weiter</strong>.";
             }
 
         } catch (\Exception $e) {
@@ -69,6 +69,12 @@
             if ($sResponse === "OK") {
                 if (folder_exist(__DIR__ . '/../src')) {
                     rrmdir(__DIR__ . '/../src');
+                    if (folder_exist(__DIR__ . '/../app/cache/prod')) {
+                        rrmdir(__DIR__ . '/../app/cache/prod');
+                    }
+                    if (folder_exist(__DIR__ . '/../app/cache/dev')) {
+                        rrmdir(__DIR__ . '/../app/cache/dev');
+                    }
                 }
             }
         } catch (\Exception $e) {
@@ -359,10 +365,12 @@
                             -->
                             <div class="tab-pane" id="tab5">
 
-                                <h3>Fortune, passion, and power.</h3>
+                                <h3>Geschafft...</h3>
 
                                 <p>
-                                    Die Anwendung sollte nun wie gewohnt funktionieren. Zukünftig sind nun auch Updates via <strong>composer</strong> möglich.<br><br>Bei Problemen wenden Sie sich gern an <a
+                                    Die Anwendung sollte nun wie gewohnt funktionieren. Zukünftig sind nun auch Updates via <strong>composer</strong> möglich.<br><br>
+                                    <a href="/">Hier gehts zurück zum um Login</a>
+                                    <br><br>Bei Problemen wenden Sie sich gern an <a
                                         href="mailto:support@contao-monitoring.de?subject=Problem beim Migrationsassistenten">support@contao-monitoring.de</a>
                                 </p>
                             </div>
@@ -371,9 +379,6 @@
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
                                 </div>
                             </div>
-                            <ul class="pager wizard">
-                                <li class="previous"><a href="#">Zurück</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
