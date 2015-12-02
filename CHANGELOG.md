@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.7.5](https://github.com/slashworks/control/releases/tag/0.7.5) (2015-11-30)
+## [0.7.6](https://github.com/slashworks/control/releases/tag/0.7.6) (2015-12-02)
 
 - Korrekturen der Update-Routinen
 - Korrekturen der .gitignore
